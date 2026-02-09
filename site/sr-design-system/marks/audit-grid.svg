@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 50 50">
+  <!-- Heroic Load Audit: Grid — systematic examination -->
+  <line x1="8" y1="8" x2="42" y2="8" stroke="#3858c0" stroke-width="2" fill="none" />
+  <line x1="8" y1="20" x2="42" y2="20" stroke="#3858c0" stroke-width="1.6" fill="none" />
+  <line x1="8" y1="32" x2="42" y2="32" stroke="#3858c0" stroke-width="1.6" fill="none" />
+  <line x1="8" y1="44" x2="42" y2="44" stroke="#3858c0" stroke-width="2" fill="none" />
+  <line x1="8" y1="8" x2="8" y2="44" stroke="#3858c0" stroke-width="2" fill="none" />
+  <line x1="22" y1="8" x2="22" y2="44" stroke="#3858c0" stroke-width="1.6" fill="none" />
+  <line x1="42" y1="8" x2="42" y2="44" stroke="#3858c0" stroke-width="2" fill="none" />
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52" height="48" viewBox="0 0 50 42">
+  <!-- Bottleneck Trap: Convergence — all lines to one point -->
+  <line x1="4" y1="4" x2="25" y2="36" stroke="#3858c0" stroke-width="1.8" fill="none" />
+  <line x1="16" y1="4" x2="25" y2="36" stroke="#3858c0" stroke-width="1.8" fill="none" />
+  <line x1="34" y1="4" x2="25" y2="36" stroke="#3858c0" stroke-width="1.8" fill="none" />
+  <line x1="46" y1="4" x2="25" y2="36" stroke="#3858c0" stroke-width="1.8" fill="none" />
+  <circle cx="25" cy="36" r="4" fill="#3858c0" opacity="0.65" />
+</svg>

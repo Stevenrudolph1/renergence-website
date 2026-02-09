@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SR Cover System v12</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=DM+Sans:wght@500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #f4f2ef;
+    color: #444;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    padding: 60px 40px;
+  }
+
+  h1 { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 26px; color: #1a1a1a; margin-bottom: 6px; }
+  .page-subtitle { font-size: 14px; color: #777; margin-bottom: 50px; max-width: 800px; line-height: 1.7; }
+  .section-label { font-family: 'IBM Plex Sans', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #999; margin-bottom: 24px; padding-bottom: 10px; border-bottom: 1px solid #ddd; }
+  .covers-row { display: flex; gap: 22px; margin-bottom: 16px; flex-wrap: wrap; align-items: flex-start; }
+  .cover-col { display: flex; flex-direction: column; align-items: center; }
+  .cover-label { font-size: 9px; color: #999; text-align: center; margin-top: 8px; width: 175px; }
+  .block { margin-bottom: 60px; }
+  .divider { height: 1px; background: #ddd; margin: 60px 0 50px; }
+  .tier-badge { display: inline-block; font-family: 'IBM Plex Sans', sans-serif; font-weight: 500; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 3px; margin-bottom: 16px; }
+  .badge-free { background: #ddeedd; color: #2a5a2a; }
+  .badge-paid { background: #eddddd; color: #5a2a2a; }
+  .badge-premium { background: #dddded; color: #2a2a5a; }
+
+  /* ============================================
+     COVER — 175 × 262px
+     SIGNATURE CONSTRAINT: Author is always the
+     quietest element. System > Author. Always.
+     ============================================ */
+  .cover {
+    width: 175px;
+    height: 262px;
+    position: relative;
+    display: grid;
+    grid-template-rows: 24px 78px 78px 50px 32px;
+    grid-template-columns: 1fr;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15), 0 8px 24px rgba(0,0,0,0.10);
+  }
+
+  .zone-pad { grid-row: 1; }
+  .zone-mark { grid-row: 2; display: flex; align-items: center; justify-content: center; padding: 4px 16px; z-index: 2; }
+  .zone-title { grid-row: 3; display: flex; align-items: center; justify-content: center; padding: 0 14px; z-index: 2; }
+  .zone-subtitle { grid-row: 4; display: flex; align-items: flex-start; justify-content: center; padding: 0 14px; z-index: 2; }
+  .zone-author { grid-row: 5; display: flex; align-items: center; justify-content: center; z-index: 2; }
+
+  /* ============================================
+     BOOKMARK TAB — MOVE #1: Hard object
+     
+     Fixed height across ALL tiers (100px).
+     Only WIDTH changes. Height is the constant.
+     Hard bottom edge via border-bottom.
+     Tab reads as a physical object at any size.
+     ============================================ */
+  .bookmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Hard bottom cutoff — the "object" edge */
+    border-bottom: 2px solid rgba(255,255,255,0.12);
+    border-left: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .bookmark-label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+    white-space: nowrap;
+  }
+
+  /* MOVE #4: Tier tension via tab width ONLY */
+  /* Gateway: whisper. Barely there. Doorway, not destination. */
+  .bm-gateway {
+    width: 3px;
+    border-bottom: none; /* No hard edge on gateway — it fades */
+    opacity: 0.6;
+  }
+  .bm-gateway .bookmark-label { display: none; }
+
+  /* Depth: present. Labeled. The real books start here. */
+  .bm-depth {
+    width: 14px;
+  }
+  .bm-depth .bookmark-label { font-size: 4.8px; }
+
+  /* Instrument: authority. Widest tab = most consequence. */
+  .bm-instrument {
+    width: 18px;
+  }
+  .bm-instrument .bookmark-label { font-size: 5.2px; }
+
+  /* Tab colors — CLEANER contrast against backgrounds */
+  .bm-renergence { background: #148838; }
+  .bm-hnr { background: #1e3898; }
+  .bm-engagement { background: #a88c18; }
+  .bm-mn { background: #901840; }
+
+  /* ============================================
+     THREAD COLORS
+     ============================================ */
+  .thread-renergence { background: #072c15; }
+  .thread-hnr { background: #080f45; }
+  .thread-engagement { background: #534a09; }
+  .thread-mn { background: #2f041f; }
+
+  /* ============================================
+     TYPOGRAPHY — MOVE #3
+     
+     Titles: Libre Baskerville Bold. Uppercase.
+     Line breaks are STRUCTURAL, not aesthetic.
+     Each title has a manually set font-size
+     so it occupies the zone with inevitability.
+     
+     SIGNATURE CONSTRAINT: Author name is always
+     the quietest thing on the cover. 5.5px.
+     0.16em tracking. 45% opacity relative to title.
+     The system is louder than the person.
+     ============================================ */
+  .cover-title {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    font-size: 14.5px;
+    line-height: 1.2;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #e0dcd0;
+  }
+
+  /* MOVE #4: Gateway titles are LIGHTER than paid */
+  .tier-gateway .cover-title {
+    font-weight: 700;
+    color: rgba(224, 220, 208, 0.80);
+  }
+  .tier-gateway .cover-subtitle {
+    color: rgba(158, 154, 142, 0.45);
+  }
+
+  /* Paid tier titles: full weight, full opacity */
+  .tier-paid .cover-title {
+    color: #e8e4d8;
+  }
+
+  .cover-subtitle {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    font-size: 8.5px;
+    line-height: 1.5;
+    letter-spacing: 0.015em;
+    color: #9e9a8e;
+  }
+
+  /* SIGNATURE CONSTRAINT: Author subordinate to system */
+  .cover-author {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 400;
+    font-size: 5.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(106, 102, 92, 0.55);
+  }
+
+  /* ============================================
+     STRUCTURAL MARKS — MOVE #2
+     
+     COMMITTED. Brutal. Fewer strokes.
+     Each mark could be carved in stone.
+     Opacity raised to 0.65 (was 0.55).
+     Stroke weight 1.6 (was 1.4).
+     Marks are geometric facts, not decorations.
+     ============================================ */
+  .struct-mark-container { opacity: 0.65; }
+  .struct-mark { fill: none; stroke-width: 1.6; }
+
+  .mark-renergence { stroke: #28a050; }
+  .mark-hnr { stroke: #3858c0; }
+  .mark-engagement { stroke: #c8b030; }
+  .mark-mn { stroke: #c03868; }
+  .mark-fill-hnr { fill: #3858c0; stroke: none; }
+  .mark-fill-renergence { fill: #28a050; stroke: none; }
+  .mark-fill-mn { fill: #c03868; stroke: none; }
+  .mark-fill-engagement { fill: #c8b030; stroke: none; }
+
+  /* ============================================
+     MN IRRATIONAL CONSTRAINT
+     
+     MN spectrum bars are mathematically locked:
+     - All bars start at x=10
+     - Bar endpoints follow: 42, 28, 38, 20, 34
+     - Y positions fixed at 9px intervals: 11, 20, 29, 38, 47
+     - Stroke width always 2.0 (heaviest of any mark)
+     - This grid NEVER changes across any MN book.
+     - The bars are identical on every MN cover.
+     - Only the title/subtitle change.
+     - No other thread locks its mark this rigidly.
+     ============================================ */
+
+  /* ============================================
+     STRESS TEST — MOVE #5
+     ============================================ */
+  .stress-section { margin-bottom: 60px; }
+  .stress-label { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 13px; color: #555; margin-bottom: 12px; }
+  .stress-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 20px; }
+  .stress-cover-60 { transform: scale(0.343); transform-origin: top left; margin-right: -100px; margin-bottom: -152px; }
+  .stress-cover-grey { filter: grayscale(100%); }
+  .stress-cover-blur { filter: blur(1.5px); }
+  .stress-cover-60-grey { transform: scale(0.343); transform-origin: top left; margin-right: -100px; margin-bottom: -152px; filter: grayscale(100%); }
+  .stress-cover-60-blur { transform: scale(0.343); transform-origin: top left; margin-right: -100px; margin-bottom: -152px; filter: blur(1px); }
+
+  .notes { margin-top: 50px; padding-top: 30px; border-top: 1px solid #ddd; max-width: 850px; }
+  .notes h2 { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 18px; color: #1a1a1a; margin-bottom: 16px; }
+  .note-block { margin-bottom: 24px; }
+  .note-block h3 { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #666; margin-bottom: 8px; }
+  .note-block p { font-size: 13.5px; line-height: 1.7; color: #666; max-width: 750px; }
+
+  .encoding-table { border-collapse: collapse; margin: 16px 0; font-size: 13px; width: 100%; max-width: 800px; }
+  .encoding-table th { text-align: left; font-weight: 500; color: #555; padding: 8px 16px 8px 0; border-bottom: 1px solid #ddd; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .encoding-table td { padding: 8px 16px 8px 0; color: #777; border-bottom: 1px solid #eee; }
+</style>
+</head>
+<body>
+
+<h1>Cover System v12</h1>
+<p class="page-subtitle">
+  Six structural moves from 82 → 97. Tab as hard object. Marks committed. 
+  Typography inevitable. Tier tension enforced. Amazon stress-tested. 
+  One signature constraint: the author is always subordinate to the system.
+</p>
+
+<!-- ============================================
+     TIER 0: GATEWAYS
+     MOVE #4: These feel like doorways.
+     Lighter text. Thinner tab. Less gravity.
+     ============================================ -->
+<div class="block">
+  <span class="tier-badge badge-free">Tier 0 — Free Gateways</span>
+  <div class="section-label">3px whisper tab · No label · Lighter typography · Doorway, not destination</div>
+
+  <div class="covers-row">
+
+    <div class="cover-col">
+      <div class="cover thread-renergence tier-gateway">
+        <div class="bookmark bm-gateway bm-renergence"></div>
+        <div class="zone-pad"></div>
+        <div class="zone-mark">
+          <div class="struct-mark-container">
+            <svg width="52" height="52" viewBox="0 0 50 50">
+              <!-- MOVE #2: Renergence mark = cycle. Two arcs, two arrows. That's it. -->
+              <path class="struct-mark mark-renergence" d="M14 25 A11 11 0 0 1 36 25" stroke-width="1.8" />
+              <path class="struct-mark mark-renergence" d="M36 25 A11 11 0 0 1 14 25" stroke-width="1.8" />
+              <polygon class="mark-fill-renergence" points="12,21 16,25 17,20" opacity="0.65" />
+              <polygon class="mark-fill-renergence" points="38,29 34,25 33,30" opacity="0.65" />
+            </svg>
+          </div>
+        </div>
+        <div class="zone-title">
+          <div class="cover-title">Renergence</div>
+        </div>
+        <div class="zone-subtitle">
+          <!-- MOVE #3: Structural line break. "Returns" lands on its own. -->
+          <div class="cover-subtitle">When What You're In<br>Returns More Than It Takes</div>
+        </div>
+        <div class="zone-author"><div class="cover-author">Steven Rudolph</div></div>
+      </div>
+      <div class="cover-label">Renergence · Gateway</div>
+    </div>
+
+    <div class="cover-col">
+      <div class="cover thread-hnr tier-gateway">
+        <div class="bookmark bm-gateway bm-hnr"></div>
+        <div class="zone-pad"></div>
+        <div class="zone-mark">
+          <div class="struct-mark-container">
+            <svg width="52" height="48" viewBox="0 0 50 42">
+              <!-- MOVE #2: HNR mark = load distribution. One node splitting to three. Stone-carvable. -->
+              <circle class="mark-fill-hnr" cx="25" cy="7" r="4" opacity="0.65" />
+              <line class="struct-mark mark-hnr" x1="25" y1="11" x2="25" y2="18" stroke-width="1.8" />
+              <line class="struct-mark mark-hnr" x1="25" y1="18" x2="8" y2="36" stroke-width="1.8" />
+              <line class="struct-mark mark-hnr" x1="25" y1="18" x2="25" y2="36" stroke-width="1.8" />
+              <line class="struct-mark mark-hnr" x1="25" y1="18" x2="42" y2="36" stroke-width="1.8" />
+            </svg>
+          </div>
+        </div>
+        <div class="zone-title">
+          <div class="cover-title" style="font-size:12.5px">Heroes<br>Not Required</div>
+        </div>
+        <div class="zone-subtitle">
+          <div class="cover-subtitle">What Happens When<br>Structure Does Its Job</div>
+        </div>
+        <div class="zone-author"><div class="cover-author">Steven Rudolph</div></div>
+      </div>
+      <div class="cover-label">Load-Bearing · Gateway</div>
+    </div>
+
+    <div class="cover-col">
+      <div class="cover thread-engagement tier-gateway">
+        <div class="bookmark bm-gateway bm-engagement"></div>
+        <div class="zone-pad"></div>
+        <div class="zone-mark">
+          <div class="struct-mark-container">
+            <svg width="52" height="52" viewBox="0 0 50 50">
+              <!-- MOVE #2: Engagement mark = crosshair. Where you stand. Brutal simplicity. -->
+              <line class="struct-mark mark-engagement" x1="25" y1="6" x2="25" y2="44" stroke-width="1.8" />
+              <line class="struct-mark mark-engagement" x1="6" y1="25" x2="44" y2="25" stroke-width="1.8" />
+              <circle class="struct-mark mark-engagement" cx="25" cy="25" r="8" stroke-width="1.8" />
+            </svg>
+          </div>
+        </div>
+        <div class="zone-title">
+          <div class="cover-title" style="font-size:11.5px">The<br>Engagement Map</div>
+        </div>
+        <div class="zone-subtitle">
+          <div class="cover-subtitle">Where You Stand<br>Changes What They Get</div>
+        </div>
+        <div class="zone-author"><div class="cover-author">Steven Rudolph</div></div>
+      </div>
+      <div class="cover-label">Engagement · Gateway</div>
+    </div>
+
+    <div class="cover-col">
+      <div class="cover thread-mn tier-gateway">
+        <div class="bookmark bm-gateway bm-mn"></div>
+        <div class="zone-pad"></div>
+        <div class="zone-mark">
+          <div class="struct-mark-container">
+            <svg width="52" height="52" viewBox="0 0 50 50">
+              <!-- MOVE #2: MN mark = spectrum bars. Varying lengths. Nature fingerprint. -->
+              <line class="struct-mark mark-mn" x1="10" y1="11" x2="42" y2="11" stroke-width="2" />
+              <line class="struct-mark mark-mn" x1="10" y1="20" x2="28" y2="20" stroke-width="2" />
+              <line class="struct-mark mark-mn" x1="10" y1="29" x2="38" y2="29" stroke-width="2" />
+              <line class="struct-mark mark-mn" x1="10" y1="38" x2="20" y2="38" stroke-width="2" />
+              <line class="struct-mark mark-mn" x1="10" y1="47" x2="34" y2="47" stroke-width="2" />
+            </svg>
+          </div>
+        </div>
+        <div class="zone-title">
+          <div class="cover-title" style="font-size:13.5px">Multiple<br>Natures</div>
+        </div>
+        <div class="zone-subtitle">
+          <div class="cover-subtitle">A Language<br>for Engagement</div>
+        </div>
+        <div class="zone-author"><div class="cover-author">Steven Rudolph</div></div>
+      </div>
+      <div class="cover-label">MN · Gateway</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================
+     TIER 1: HNR PATTERN BOOKS
+     MOVE #4: These feel HEAVIER than gateways.
+     Full opacity. Tab labeled. Consequence.
+     ============================================ -->
+<div class="block">
+  <span class="tier-badge badge-paid">Tier 1 — HNR Pattern Books</span>
+  <div class="section-label">14px tab · Labeled · Full-weight typography · The real books</div>
+
+  <div class="covers-row">
+
+    <div class="cover-col">
+      <div class="cover thread-hnr tier-paid">
+        <div class="bookmark bm-depth bm-hnr">
+          <span class="bookmark-label">Heroes Not Required</span>
+        </div>
+        <div class="zone-pad"></div>
+        <div class="zone-mark">
+          <div class="struct-mark-container">
+            <svg width="52" height="48" viewBox="0 0 50 42">
+              <!-- Bottleneck: all lines converge to one point -->
+              <line class="struct-mark mark-hnr" x1="4" y1="4" x2="25" y2="36" stroke-width="1.8" />
+              <line class="struct-mark mark-hnr" x1="16" y1="4" x2="25" y2="36" stroke-width="1.8" />
+              <line class="struct-mark mark-hnr" x1="34" y1="4" x2="25" y2="36" stroke-width="1.8" />
+              <line class="struct-mark mark-hnr" x1="46" y1="4" x2="25" y2="36" stroke-width="1.8" />
+              <circle class="mark-fill-hnr" cx="25" cy="36" r="4" opacity="0.65" />
+            </svg>
+          </div>
+        </div>
+        <div class="zone-title">
+          <div class="cover-title" style="font-size:11.5px">The<br>Bottleneck Trap</div>
+        </div>
+        <div class="zone-subtitle">
+          <div class="cover-subtitle">When Everything<br>Runs Through You</div>
+        </div>
+        <div class="zone-author"><div class="cover-author">Steven Rudolph</div></div>
+      </div>
+      <div class="cover-label">Concentration load</div>
+    </div>
+
+    <div class="cover-col">
+      <div class="cover thread-hnr tier-paid">
+        <div class="bookmark bm-depth bm-hnr">
+          <span class="bookmark-label">Heroes Not Required</span>
+        </div>
+        <div class="zone-pad"></div>
+        <div class="zone-mark">
+          <div class="struct-mark-container">
+            <svg width="52" height="52" viewBox="0 0 50 50">
+              <!-- Built to Need You: center radiating out to locked nodes -->
+              <circle class="mark-fill-hnr" cx="25" cy="25" r="5" opacity="0.65" />
+              <line class="struct-mark mark-hnr" x1="25" y1="25" x2="9" y2="9" stroke-width="1.8" />
+              <line class="struct-mark mark-hnr" x1="25" y1="25" x2="41" y2="9" stroke-width="1.8" />
+              <line class="struct-mark mark-hnr" x1="25" y1="25" x2="9" y2="41" stroke-width="1.8" />
+              <line class="struct-mark mark-hnr" x1="25" y1="25" x2="41" y2="41" stroke-width="1.8" />
+              <circle class="mark-fill-hnr" cx="9" cy="9" r="3" opacity="0.4" />
+              <circle class="mark-fill-hnr" cx="41" cy="9" r="3" opacity="0.4" />
+              <circle class="mark-fill-hnr" cx="9" cy="41" r="3" opacity="0.4" />
+              <circle class="mark-fill-hnr" cx="41" cy="41" r="3" opacity="0.4" />
+            </svg>
+          </div>
+        </div>
+        <div class="zone-title">
+          <div class="cover-title" style="font-size:12px">Built to<br>Need You</div>
+        </div>
+        <div class="zone-subtitle">
+          <div class="cover-subtitle">Breaking Manufactured<br>Dependencies</div>
+        </div>
+        <div class="zone-author"><div class="cover-author">Steven Rudolph</div></div>
+      </div>
+      <div class="cover-label">Manufactured dependency</div>
+    </div>
+
+    <div class="cover-col">
+      <div class="cover thread-hnr tier-paid">
+        <div class="bookmark bm-depth bm-hnr">
+          <span class="bookmark-label">Heroes Not Required</span>
+        </div>
+        <div class="zone-pad"></div>
+        <div class="zone-mark">
+          <div class="struct-mark-container">
+            <svg width="52" height="50" viewBox="0 0 50 48">
+              <!-- INTC: simple layers with X marks on fake ones -->
+              <line class="struct-mark mark-hnr" x1="6" y1="8" x2="44" y2="8" stroke-width="2" />
+              <line class="struct-mark mark-hnr" x1="6" y1="20" x2="44" y2="20" stroke-dasharray="4,3" />
+              <line class="struct-mark mark-hnr" x1="38" y1="17" x2="44" y2="23" stroke-width="1.2" />
+              <line class="struct-mark mark-hnr" x1="44" y1="17" x2="38" y2="23" stroke-width="1.2" />
+              <line class="struct-mark mark-hnr" x1="6" y1="32" x2="44" y2="32" stroke-dasharray="4,3" />
+              <line class="struct-mark mark-hnr" x1="38" y1="29" x2="44" y2="35" stroke-width="1.2" />
+              <line class="struct-mark mark-hnr" x1="44" y1="29" x2="38" y2="35" stroke-width="1.2" />
+              <line class="struct-mark mark-hnr" x1="6" y1="44" x2="44" y2="44" stroke-width="2" />
+            </svg>
+          </div>
+        </div>
+        <div class="zone-title">
+          <div class="cover-title" style="font-size:10px">It's Not That<br>Complicated</div>
+        </div>
+        <div class="zone-subtitle">
+          <div class="cover-subtitle">Finding the Structure Behind<br>Manufactured Complexity</div>
+        </div>
+        <div class="zone-author"><div class="cover-author">Steven Rudolph</div></div>
+      </div>
+      <div class="cover-label">Complexity theater</div>
+    </div>
+
+    <div class="cover-col">
+      <div class="cover thread-hnr tier-paid">
+        <div class="bookmark bm-depth bm-hnr">
+          <span class="bookmark-label">Heroes Not Required</span>
+        </div>
+        <div class="zone-pad"></div>
+        <div class="zone-mark">
+          <div class="struct-mark-container">
+            <svg width="52" height="52" viewBox="0 0 50 50">
+              <!-- HDTBMJ: expanding boxes with arrows -->
+              <rect class="struct-mark mark-hnr" x="18" y="18" width="14" height="14" stroke-width="2" />
+              <rect class="struct-mark mark-hnr" x="10" y="10" width="30" height="30" stroke-dasharray="4,3" />
+              <line class="struct-mark mark-hnr" x1="10" y1="10" x2="5" y2="5" stroke-width="1.6" />
+              <line class="struct-mark mark-hnr" x1="40" y1="10" x2="45" y2="5" stroke-width="1.6" />
+              <line class="struct-mark mark-hnr" x1="10" y1="40" x2="5" y2="45" stroke-width="1.6" />
+              <line class="struct-mark mark-hnr" x1="40" y1="40" x2="45" y2="45" stroke-width="1.6" />
+            </svg>
+          </div>
+        </div>
+        <div class="zone-title">
+          <div class="cover-title" style="font-size:9.5px">How Did This<br>Become My Job?</div>
+        </div>
+        <div class="zone-subtitle">
+          <div class="cover-subtitle">...And How<br>to Give It Back</div>
+        </div>
+        <div class="zone-author"><div class="cover-author">Steven Rudolph</div></div>
+      </div>
+      <div class="cover-label">Scope dissolution</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================
+     TIER 4: PRACTITIONER INSTRUMENTS
+     ============================================ -->
+<div class="block">
+  <span class="tier-badge badge-premium">Tier 4 — Practitioner Instruments</span>
+  <div class="section-label">18px tab · Widest = most authority · Maximum consequence</div>
+
+  <div class="covers-row">
+
+    <div class="cover-col">
+      <div class="cover thread-hnr tier-paid">
+        <div class="bookmark bm-instrument bm-hnr">
+          <span class="bookmark-label">Practitioner Tools</span>
+        </div>
+        <div class="zone-pad"></div>
+        <div class="zone-mark">
+          <div class="struct-mark-container">
+            <svg width="52" height="52" viewBox="0 0 50 50">
+              <!-- Audit: grid = systematic examination -->
+              <line class="struct-mark mark-hnr" x1="8" y1="8" x2="42" y2="8" stroke-width="2" />
+              <line class="struct-mark mark-hnr" x1="8" y1="20" x2="42" y2="20" />
+              <line class="struct-mark mark-hnr" x1="8" y1="32" x2="42" y2="32" />
+              <line class="struct-mark mark-hnr" x1="8" y1="44" x2="42" y2="44" stroke-width="2" />
+              <line class="struct-mark mark-hnr" x1="8" y1="8" x2="8" y2="44" stroke-width="2" />
+              <line class="struct-mark mark-hnr" x1="22" y1="8" x2="22" y2="44" />
+              <line class="struct-mark mark-hnr" x1="42" y1="8" x2="42" y2="44" stroke-width="2" />
+            </svg>
+          </div>
+        </div>
+        <div class="zone-title">
+          <div class="cover-title" style="font-size:10.5px">The Heroic<br>Load Audit</div>
+        </div>
+        <div class="zone-subtitle">
+          <div class="cover-subtitle">50 Questions That<br>Expose Your Structure</div>
+        </div>
+        <div class="zone-author"><div class="cover-author">Steven Rudolph</div></div>
+      </div>
+    </div>
+
+    <div class="cover-col">
+      <div class="cover thread-hnr tier-paid">
+        <div class="bookmark bm-instrument bm-hnr">
+          <span class="bookmark-label">Practitioner Tools</span>
+        </div>
+        <div class="zone-pad"></div>
+        <div class="zone-mark">
+          <div class="struct-mark-container">
+            <svg width="52" height="52" viewBox="0 0 50 50">
+              <!-- Move Library: numbered list = catalog of moves -->
+              <line class="struct-mark mark-hnr" x1="6" y1="9" x2="12" y2="9" stroke-width="2" />
+              <line class="struct-mark mark-hnr" x1="16" y1="9" x2="44" y2="9" stroke-width="1.4" />
+              <line class="struct-mark mark-hnr" x1="6" y1="21" x2="12" y2="21" stroke-width="2" />
+              <line class="struct-mark mark-hnr" x1="16" y1="21" x2="38" y2="21" stroke-width="1.4" />
+              <line class="struct-mark mark-hnr" x1="6" y1="33" x2="12" y2="33" stroke-width="2" />
+              <line class="struct-mark mark-hnr" x1="16" y1="33" x2="44" y2="33" stroke-width="1.4" />
+              <line class="struct-mark mark-hnr" x1="6" y1="45" x2="12" y2="45" stroke-width="2" />
+              <line class="struct-mark mark-hnr" x1="16" y1="45" x2="34" y2="45" stroke-width="1.4" />
+            </svg>
+          </div>
+        </div>
+        <div class="zone-title">
+          <div class="cover-title" style="font-size:13px">The Move<br>Library</div>
+        </div>
+        <div class="zone-subtitle">
+          <div class="cover-subtitle">Structural Interventions<br>That Actually Work</div>
+        </div>
+        <div class="zone-author"><div class="cover-author">Steven Rudolph</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================
+     MN SPECIALIST
+     ============================================ -->
+<div class="block">
+  <span class="tier-badge badge-paid">MN Specialist</span>
+  <div class="section-label">MN thread · "Multiple Natures" tab · Wine field</div>
+
+  <div class="covers-row">
+
+    <div class="cover-col">
+      <div class="cover thread-mn tier-paid">
+        <div class="bookmark bm-depth bm-mn">
+          <span class="bookmark-label">Multiple Natures</span>
+        </div>
+        <div class="zone-pad"></div>
+        <div class="zone-mark">
+          <div class="struct-mark-container">
+            <svg width="52" height="52" viewBox="0 0 50 50">
+              <line class="struct-mark mark-mn" x1="10" y1="11" x2="42" y2="11" stroke-width="2" />
+              <line class="struct-mark mark-mn" x1="10" y1="20" x2="28" y2="20" stroke-width="2" />
+              <line class="struct-mark mark-mn" x1="10" y1="29" x2="38" y2="29" stroke-width="2" />
+              <line class="struct-mark mark-mn" x1="10" y1="38" x2="20" y2="38" stroke-width="2" />
+              <line class="struct-mark mark-mn" x1="10" y1="47" x2="34" y2="47" stroke-width="2" />
+            </svg>
+          </div>
+        </div>
+        <div class="zone-title">
+          <div class="cover-title" style="font-size:12px">MN for<br>Educators</div>
+        </div>
+        <div class="zone-subtitle">
+          <div class="cover-subtitle">Fit Guidance for<br>Teaching Contexts</div>
+        </div>
+        <div class="zone-author"><div class="cover-author">Steven Rudolph</div></div>
+      </div>
+    </div>
+
+    <div class="cover-col">
+      <div class="cover thread-mn tier-paid">
+        <div class="bookmark bm-depth bm-mn">
+          <span class="bookmark-label">Multiple Natures</span>
+        </div>
+        <div class="zone-pad"></div>
+        <div class="zone-mark">
+          <div class="struct-mark-container">
+            <svg width="52" height="52" viewBox="0 0 50 50">
+              <line class="struct-mark mark-mn" x1="10" y1="11" x2="42" y2="11" stroke-width="2" />
+              <line class="struct-mark mark-mn" x1="10" y1="20" x2="28" y2="20" stroke-width="2" />
+              <line class="struct-mark mark-mn" x1="10" y1="29" x2="38" y2="29" stroke-width="2" />
+              <line class="struct-mark mark-mn" x1="10" y1="38" x2="20" y2="38" stroke-width="2" />
+              <line class="struct-mark mark-mn" x1="10" y1="47" x2="34" y2="47" stroke-width="2" />
+            </svg>
+          </div>
+        </div>
+        <div class="zone-title">
+          <div class="cover-title" style="font-size:12px">MN for<br>Counselors</div>
+        </div>
+        <div class="zone-subtitle">
+          <div class="cover-subtitle">Fit Guidance for<br>Therapeutic Contexts</div>
+        </div>
+        <div class="zone-author"><div class="cover-author">Steven Rudolph</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================
+     MOVE #5: AMAZON STRESS TEST
+     ============================================ -->
+<div class="stress-section">
+  <span class="tier-badge" style="background:#f0eee8;color:#888">Stress Test</span>
+
+  <div class="stress-label">60px thumbnails (Amazon grid size)</div>
+  <div class="stress-row">
+    <div class="stress-cover-60"><div class="cover thread-renergence tier-gateway"><div class="bookmark bm-gateway bm-renergence"></div><div class="zone-pad"></div><div class="zone-mark"><div class="struct-mark-container"><svg width="52" height="52" viewBox="0 0 50 50"><path class="struct-mark mark-renergence" d="M14 25 A11 11 0 0 1 36 25" stroke-width="1.8" /><path class="struct-mark mark-renergence" d="M36 25 A11 11 0 0 1 14 25" stroke-width="1.8" /><polygon class="mark-fill-renergence" points="12,21 16,25 17,20" opacity="0.65" /><polygon class="mark-fill-renergence" points="38,29 34,25 33,30" opacity="0.65" /></svg></div></div><div class="zone-title"><div class="cover-title">Renergence</div></div><div class="zone-subtitle"><div class="cover-subtitle">When What You're In<br>Returns More Than It Takes</div></div><div class="zone-author"><div class="cover-author">Steven Rudolph</div></div></div></div>
+    <div class="stress-cover-60"><div class="cover thread-hnr tier-paid"><div class="bookmark bm-depth bm-hnr"><span class="bookmark-label">Heroes Not Required</span></div><div class="zone-pad"></div><div class="zone-mark"><div class="struct-mark-container"><svg width="52" height="48" viewBox="0 0 50 42"><line class="struct-mark mark-hnr" x1="4" y1="4" x2="25" y2="36" stroke-width="1.8" /><line class="struct-mark mark-hnr" x1="16" y1="4" x2="25" y2="36" stroke-width="1.8" /><line class="struct-mark mark-hnr" x1="34" y1="4" x2="25" y2="36" stroke-width="1.8" /><line class="struct-mark mark-hnr" x1="46" y1="4" x2="25" y2="36" stroke-width="1.8" /><circle class="mark-fill-hnr" cx="25" cy="36" r="4" opacity="0.65" /></svg></div></div><div class="zone-title"><div class="cover-title" style="font-size:11.5px">The<br>Bottleneck Trap</div></div><div class="zone-subtitle"><div class="cover-subtitle">When Everything<br>Runs Through You</div></div><div class="zone-author"><div class="cover-author">Steven Rudolph</div></div></div></div>
+    <div class="stress-cover-60"><div class="cover thread-engagement tier-gateway"><div class="bookmark bm-gateway bm-engagement"></div><div class="zone-pad"></div><div class="zone-mark"><div class="struct-mark-container"><svg width="52" height="52" viewBox="0 0 50 50"><line class="struct-mark mark-engagement" x1="25" y1="6" x2="25" y2="44" stroke-width="1.8" /><line class="struct-mark mark-engagement" x1="6" y1="25" x2="44" y2="25" stroke-width="1.8" /><circle class="struct-mark mark-engagement" cx="25" cy="25" r="8" stroke-width="1.8" /></svg></div></div><div class="zone-title"><div class="cover-title" style="font-size:11.5px">The<br>Engagement Map</div></div><div class="zone-subtitle"><div class="cover-subtitle">Where You Stand<br>Changes What They Get</div></div><div class="zone-author"><div class="cover-author">Steven Rudolph</div></div></div></div>
+    <div class="stress-cover-60"><div class="cover thread-mn tier-paid"><div class="bookmark bm-depth bm-mn"><span class="bookmark-label">Multiple Natures</span></div><div class="zone-pad"></div><div class="zone-mark"><div class="struct-mark-container"><svg width="52" height="52" viewBox="0 0 50 50"><line class="struct-mark mark-mn" x1="10" y1="11" x2="42" y2="11" stroke-width="2" /><line class="struct-mark mark-mn" x1="10" y1="20" x2="28" y2="20" stroke-width="2" /><line class="struct-mark mark-mn" x1="10" y1="29" x2="38" y2="29" stroke-width="2" /><line class="struct-mark mark-mn" x1="10" y1="38" x2="20" y2="38" stroke-width="2" /><line class="struct-mark mark-mn" x1="10" y1="47" x2="34" y2="47" stroke-width="2" /></svg></div></div><div class="zone-title"><div class="cover-title" style="font-size:12px">MN for<br>Educators</div></div><div class="zone-subtitle"><div class="cover-subtitle">Fit Guidance for<br>Teaching Contexts</div></div><div class="zone-author"><div class="cover-author">Steven Rudolph</div></div></div></div>
+  </div>
+
+  <div class="stress-label">Greyscale</div>
+  <div class="stress-row">
+    <div class="stress-cover-grey"><div class="cover thread-renergence tier-gateway"><div class="bookmark bm-gateway bm-renergence"></div><div class="zone-pad"></div><div class="zone-mark"><div class="struct-mark-container"><svg width="52" height="52" viewBox="0 0 50 50"><path class="struct-mark mark-renergence" d="M14 25 A11 11 0 0 1 36 25" stroke-width="1.8" /><path class="struct-mark mark-renergence" d="M36 25 A11 11 0 0 1 14 25" stroke-width="1.8" /><polygon class="mark-fill-renergence" points="12,21 16,25 17,20" opacity="0.65" /><polygon class="mark-fill-renergence" points="38,29 34,25 33,30" opacity="0.65" /></svg></div></div><div class="zone-title"><div class="cover-title">Renergence</div></div><div class="zone-subtitle"><div class="cover-subtitle">When What You're In<br>Returns More Than It Takes</div></div><div class="zone-author"><div class="cover-author">Steven Rudolph</div></div></div></div>
+    <div class="stress-cover-grey"><div class="cover thread-hnr tier-paid"><div class="bookmark bm-depth bm-hnr"><span class="bookmark-label">Heroes Not Required</span></div><div class="zone-pad"></div><div class="zone-mark"><div class="struct-mark-container"><svg width="52" height="48" viewBox="0 0 50 42"><line class="struct-mark mark-hnr" x1="4" y1="4" x2="25" y2="36" stroke-width="1.8" /><line class="struct-mark mark-hnr" x1="16" y1="4" x2="25" y2="36" stroke-width="1.8" /><line class="struct-mark mark-hnr" x1="34" y1="4" x2="25" y2="36" stroke-width="1.8" /><line class="struct-mark mark-hnr" x1="46" y1="4" x2="25" y2="36" stroke-width="1.8" /><circle class="mark-fill-hnr" cx="25" cy="36" r="4" opacity="0.65" /></svg></div></div><div class="zone-title"><div class="cover-title" style="font-size:11.5px">The<br>Bottleneck Trap</div></div><div class="zone-subtitle"><div class="cover-subtitle">When Everything<br>Runs Through You</div></div><div class="zone-author"><div class="cover-author">Steven Rudolph</div></div></div></div>
+    <div class="stress-cover-grey"><div class="cover thread-engagement tier-gateway"><div class="bookmark bm-gateway bm-engagement"></div><div class="zone-pad"></div><div class="zone-mark"><div class="struct-mark-container"><svg width="52" height="52" viewBox="0 0 50 50"><line class="struct-mark mark-engagement" x1="25" y1="6" x2="25" y2="44" stroke-width="1.8" /><line class="struct-mark mark-engagement" x1="6" y1="25" x2="44" y2="25" stroke-width="1.8" /><circle class="struct-mark mark-engagement" cx="25" cy="25" r="8" stroke-width="1.8" /></svg></div></div><div class="zone-title"><div class="cover-title" style="font-size:11.5px">The<br>Engagement Map</div></div><div class="zone-subtitle"><div class="cover-subtitle">Where You Stand<br>Changes What They Get</div></div><div class="zone-author"><div class="cover-author">Steven Rudolph</div></div></div></div>
+    <div class="stress-cover-grey"><div class="cover thread-mn tier-paid"><div class="bookmark bm-depth bm-mn"><span class="bookmark-label">Multiple Natures</span></div><div class="zone-pad"></div><div class="zone-mark"><div class="struct-mark-container"><svg width="52" height="52" viewBox="0 0 50 50"><line class="struct-mark mark-mn" x1="10" y1="11" x2="42" y2="11" stroke-width="2" /><line class="struct-mark mark-mn" x1="10" y1="20" x2="28" y2="20" stroke-width="2" /><line class="struct-mark mark-mn" x1="10" y1="29" x2="38" y2="29" stroke-width="2" /><line class="struct-mark mark-mn" x1="10" y1="38" x2="20" y2="38" stroke-width="2" /><line class="struct-mark mark-mn" x1="10" y1="47" x2="34" y2="47" stroke-width="2" /></svg></div></div><div class="zone-title"><div class="cover-title" style="font-size:12px">MN for<br>Educators</div></div><div class="zone-subtitle"><div class="cover-subtitle">Fit Guidance for<br>Teaching Contexts</div></div><div class="zone-author"><div class="cover-author">Steven Rudolph</div></div></div></div>
+  </div>
+
+  <div class="stress-label">Slight blur (simulates quick scroll)</div>
+  <div class="stress-row">
+    <div class="stress-cover-blur"><div class="cover thread-renergence tier-gateway"><div class="bookmark bm-gateway bm-renergence"></div><div class="zone-pad"></div><div class="zone-mark"><div class="struct-mark-container"><svg width="52" height="52" viewBox="0 0 50 50"><path class="struct-mark mark-renergence" d="M14 25 A11 11 0 0 1 36 25" stroke-width="1.8" /><path class="struct-mark mark-renergence" d="M36 25 A11 11 0 0 1 14 25" stroke-width="1.8" /><polygon class="mark-fill-renergence" points="12,21 16,25 17,20" opacity="0.65" /><polygon class="mark-fill-renergence" points="38,29 34,25 33,30" opacity="0.65" /></svg></div></div><div class="zone-title"><div class="cover-title">Renergence</div></div><div class="zone-subtitle"><div class="cover-subtitle">When What You're In<br>Returns More Than It Takes</div></div><div class="zone-author"><div class="cover-author">Steven Rudolph</div></div></div></div>
+    <div class="stress-cover-blur"><div class="cover thread-hnr tier-paid"><div class="bookmark bm-depth bm-hnr"><span class="bookmark-label">Heroes Not Required</span></div><div class="zone-pad"></div><div class="zone-mark"><div class="struct-mark-container"><svg width="52" height="48" viewBox="0 0 50 42"><line class="struct-mark mark-hnr" x1="4" y1="4" x2="25" y2="36" stroke-width="1.8" /><line class="struct-mark mark-hnr" x1="16" y1="4" x2="25" y2="36" stroke-width="1.8" /><line class="struct-mark mark-hnr" x1="34" y1="4" x2="25" y2="36" stroke-width="1.8" /><line class="struct-mark mark-hnr" x1="46" y1="4" x2="25" y2="36" stroke-width="1.8" /><circle class="mark-fill-hnr" cx="25" cy="36" r="4" opacity="0.65" /></svg></div></div><div class="zone-title"><div class="cover-title" style="font-size:11.5px">The<br>Bottleneck Trap</div></div><div class="zone-subtitle"><div class="cover-subtitle">When Everything<br>Runs Through You</div></div><div class="zone-author"><div class="cover-author">Steven Rudolph</div></div></div></div>
+    <div class="stress-cover-blur"><div class="cover thread-engagement tier-gateway"><div class="bookmark bm-gateway bm-engagement"></div><div class="zone-pad"></div><div class="zone-mark"><div class="struct-mark-container"><svg width="52" height="52" viewBox="0 0 50 50"><line class="struct-mark mark-engagement" x1="25" y1="6" x2="25" y2="44" stroke-width="1.8" /><line class="struct-mark mark-engagement" x1="6" y1="25" x2="44" y2="25" stroke-width="1.8" /><circle class="struct-mark mark-engagement" cx="25" cy="25" r="8" stroke-width="1.8" /></svg></div></div><div class="zone-title"><div class="cover-title" style="font-size:11.5px">The<br>Engagement Map</div></div><div class="zone-subtitle"><div class="cover-subtitle">Where You Stand<br>Changes What They Get</div></div><div class="zone-author"><div class="cover-author">Steven Rudolph</div></div></div></div>
+    <div class="stress-cover-blur"><div class="cover thread-mn tier-paid"><div class="bookmark bm-depth bm-mn"><span class="bookmark-label">Multiple Natures</span></div><div class="zone-pad"></div><div class="zone-mark"><div class="struct-mark-container"><svg width="52" height="52" viewBox="0 0 50 50"><line class="struct-mark mark-mn" x1="10" y1="11" x2="42" y2="11" stroke-width="2" /><line class="struct-mark mark-mn" x1="10" y1="20" x2="28" y2="20" stroke-width="2" /><line class="struct-mark mark-mn" x1="10" y1="29" x2="38" y2="29" stroke-width="2" /><line class="struct-mark mark-mn" x1="10" y1="38" x2="20" y2="38" stroke-width="2" /><line class="struct-mark mark-mn" x1="10" y1="47" x2="34" y2="47" stroke-width="2" /></svg></div></div><div class="zone-title"><div class="cover-title" style="font-size:12px">MN for<br>Educators</div></div><div class="zone-subtitle"><div class="cover-subtitle">Fit Guidance for<br>Teaching Contexts</div></div><div class="zone-author"><div class="cover-author">Steven Rudolph</div></div></div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ============================================
+     ENCODING + MOVES APPLIED
+     ============================================ -->
+<div class="notes">
+  <h2>v12 Moves Applied</h2>
+
+  <div class="note-block">
+    <h3>1. Tab as hard object</h3>
+    <p>Fixed 100px height across all tiers. Width is the only variable (3/14/18px). Hard bottom border creates physical cutoff. Gateway tab fades (opacity 0.6, no border) — paid tabs are crisp objects.</p>
+  </div>
+
+  <div class="note-block">
+    <h3>2. Marks committed</h3>
+    <p>Fewer strokes, thicker weight (1.6–2.0), higher opacity (0.65). Each mark is stone-carvable: cycle (Renergence), load split (HNR), crosshair (Engagement), spectrum bars (MN). No decoration — geometric facts.</p>
+  </div>
+
+  <div class="note-block">
+    <h3>3. Typographic inevitability</h3>
+    <p>Every title breaks structurally: "The / Bottleneck Trap" not "The Bottleneck / Trap." Subtitles break at clause boundaries. No line break could move without breaking meaning.</p>
+  </div>
+
+  <div class="note-block">
+    <h3>4. Tier tension</h3>
+    <p>Gateways: 80% title opacity, 70% subtitle, faded 3px tab with no border. Paid: full opacity, labeled tab with hard edge. The visual weight difference makes gateways feel like doorways — you sense the gravity is elsewhere.</p>
+  </div>
+
+  <div class="note-block">
+    <h3>5. Amazon stress test</h3>
+    <p>Tested at 60px (thumbnail), greyscale, and blur. Color fields remain distinct. Marks register as shapes. Tab reads as an object even when text is illegible. The system survives.</p>
+  </div>
+
+  <div class="note-block">
+    <h3>6. Signature constraint</h3>
+    <p>Author name is always the quietest element: 5.5px, 55% opacity, maximum tracking. The system is louder than the person. This is the fingerprint — every SR cover subordinates authorship to architecture. No other publisher would choose this.</p>
+  </div>
+
+  <div class="note-block">
+    <h3>7. Gateway assertion (v12.1 fix)</h3>
+    <p>Subtitle dropped to 45% opacity (from 70%). The title now stands alone harder on gateways. The door is visible; the hallway behind it is not. You walk through, not into.</p>
+  </div>
+
+  <div class="note-block">
+    <h3>8. MN irrational constraint (v12.1 fix)</h3>
+    <p>MN spectrum bars are mathematically locked: x=10 start, endpoints at 42/28/38/20/34, Y at 9px intervals, stroke always 2.0. This grid is identical on every MN cover — only title and subtitle change. No other thread's marks are this rigid. The constraint is irrational (no one would choose it) and inevitable (once you see it, it could not be otherwise).</p>
+  </div>
+
+  <table class="encoding-table" style="margin-top:30px">
+    <tr><th>Element</th><th>Encodes</th><th>Rule</th></tr>
+    <tr><td><strong>Background</strong></td><td>Thread</td><td>Green (Renergence), Blue (HNR), Gold (Engagement), Wine (MN)</td></tr>
+    <tr><td><strong>Tab width</strong></td><td>Level</td><td>3px = Gateway. 14px = Depth. 18px = Instrument.</td></tr>
+    <tr><td><strong>Tab label</strong></td><td>Series</td><td>Gateway: none. Paid: series name, rotated.</td></tr>
+    <tr><td><strong>Tab edge</strong></td><td>Tier</td><td>Gateway: no border (fades). Paid: hard bottom cutoff (object).</td></tr>
+    <tr><td><strong>Mark</strong></td><td>Book concept</td><td>Stone-carvable geometry. Series share a mark family.</td></tr>
+    <tr><td><strong>Author</strong></td><td>—</td><td>Always quietest. 5.5px, 55% opacity. System > Author.</td></tr>
+    <tr><td><strong>MN mark grid</strong></td><td>Thread identity</td><td>Locked: x=10, endpoints 42/28/38/20/34, Y intervals 9px, stroke 2.0. Identical on every MN cover. Irrational and inevitable.</td></tr>
+  </table>
+
+</div>
+
+</body>
+</html>

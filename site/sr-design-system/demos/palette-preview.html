@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=DM+Sans:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="../sr-design-tokens.css">
+<link rel="stylesheet" href="../sr-covers.css">
+<title>Dusk Ember — Palette Preview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--surface-page); font-family: var(--font-body); color: var(--text-body); padding: 40px; }
+  h1 { font-family: var(--font-title); color: var(--text-primary); font-size: 28px; margin-bottom: 8px; }
+  .palette-bar { display: flex; gap: 0; margin: 24px 0 40px; border-radius: 8px; overflow: hidden; height: 48px; }
+  .palette-bar div { flex: 1; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-family: var(--font-system); letter-spacing: 0.05em; }
+  .subtitle { color: var(--text-secondary); font-size: 14px; margin-bottom: 32px; }
+  .covers { display: flex; gap: 32px; flex-wrap: wrap; margin-bottom: 48px; }
+  .cover-cell { text-align: center; }
+  .cover-cell .label { font-size: 11px; color: var(--text-muted); margin-top: 10px; font-family: var(--font-system); text-transform: uppercase; letter-spacing: 0.12em; }
+
+  .section { margin-bottom: 40px; }
+  .section h2 { font-family: var(--font-system); font-size: 14px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-secondary); margin-bottom: 16px; }
+  .swatch-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  .swatch { width: 80px; height: 50px; border-radius: 6px; display: flex; align-items: flex-end; padding: 4px 6px; font-size: 9px; font-family: var(--font-system); }
+  .swatch.light { border: 1px solid var(--surface-card-border); }
+
+  .text-samples { display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; }
+  .text-samples span { font-size: 14px; }
+
+  .btn-row { display: flex; gap: 12px; margin-bottom: 24px; }
+  .btn { padding: 10px 24px; border: none; border-radius: var(--site-radius); color: white; font-family: var(--font-system); font-size: 13px; cursor: pointer; }
+  .btn-primary { background: var(--site-action-bg); }
+  .btn-primary:hover { background: var(--site-action-hover); }
+  .btn-accent { background: var(--site-accent); }
+  .btn-accent:hover { background: var(--site-accent-hover); color: var(--text-primary); }
+
+  .badge-row { display: flex; gap: 12px; }
+  .badge { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-family: var(--font-system); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<h1>Dusk Ember</h1>
+<p class="subtitle">Source palette: #0D1164 · #640D5F · #EA2264 · #F78D60</p>
+
+<div class="palette-bar">
+  <div style="background: #0D1164;">P1</div>
+  <div style="background: #640D5F;">P2</div>
+  <div style="background: #EA2264;">P3</div>
+  <div style="background: #F78D60;">P4</div>
+</div>
+
+<!-- COVERS -->
+<div class="covers">
+  <!-- Renergence (gateway) -->
+  <div class="cover-cell">
+    <div class="cover thread-renergence tier-gateway">
+      <div class="bookmark bm-gateway bm-renergence"><span class="bookmark-label"></span></div>
+      <div class="zone-pad"></div>
+      <div class="zone-mark">
+        <div class="struct-mark-container">
+          <svg width="52" height="52" viewBox="0 0 50 50">
+            <path class="struct-mark mark-renergence" d="M14 25 A11 11 0 0 1 36 25" stroke-width="1.8" />
+            <path class="struct-mark mark-renergence" d="M36 25 A11 11 0 0 1 14 25" stroke-width="1.8" />
+          </svg>
+        </div>
+      </div>
+      <div class="zone-title"><div class="cover-title">Renergence</div></div>
+      <div class="zone-subtitle"><div class="cover-subtitle">When What You're In<br>Returns More Than It Takes</div></div>
+      <div class="zone-author"><div class="cover-author">Steven Rudolph</div></div>
+    </div>
+    <div class="label">Renergence</div>
+  </div>
+
+  <!-- HNR (depth) -->
+  <div class="cover-cell">
+    <div class="cover thread-hnr tier-depth">
+      <div class="bookmark bm-depth bm-hnr"><span class="bookmark-label">DEPTH</span></div>
+      <div class="zone-pad"></div>
+      <div class="zone-mark">
+        <div class="struct-mark-container">
+          <svg width="52" height="52" viewBox="0 0 50 50">
+            <line class="struct-mark mark-hnr" x1="10" y1="36" x2="25" y2="14" stroke-width="1.6" />
+            <line class="struct-mark mark-hnr" x1="25" y1="14" x2="40" y2="36" stroke-width="1.6" />
+            <line class="struct-mark mark-hnr" x1="15" y1="36" x2="35" y2="36" stroke-width="1.6" />
+          </svg>
+        </div>
+      </div>
+      <div class="zone-title"><div class="cover-title">Heroes<br>Not Required</div></div>
+      <div class="zone-subtitle"><div class="cover-subtitle">Building Systems That<br>Don't Depend on One Person</div></div>
+      <div class="zone-author"><div class="cover-author">Steven Rudolph</div></div>
+    </div>
+    <div class="label">HNR</div>
+  </div>
+
+  <!-- Engagement (gateway) -->
+  <div class="cover-cell">
+    <div class="cover thread-engagement tier-gateway">
+      <div class="bookmark bm-gateway bm-engagement"><span class="bookmark-label"></span></div>
+      <div class="zone-pad"></div>
+      <div class="zone-mark">
+        <div class="struct-mark-container">
+          <svg width="52" height="52" viewBox="0 0 50 50">
+            <circle class="struct-mark mark-engagement" cx="25" cy="25" r="4" stroke-width="1.8" />
+            <line class="struct-mark mark-engagement" x1="25" y1="10" x2="25" y2="18" stroke-width="1.6" />
+            <line class="struct-mark mark-engagement" x1="25" y1="32" x2="25" y2="40" stroke-width="1.6" />
+            <line class="struct-mark mark-engagement" x1="10" y1="25" x2="18" y2="25" stroke-width="1.6" />
+            <line class="struct-mark mark-engagement" x1="32" y1="25" x2="40" y2="25" stroke-width="1.6" />
+          </svg>
+        </div>
+      </div>
+      <div class="zone-title"><div class="cover-title">The Engagement<br>Map</div></div>
+      <div class="zone-subtitle"><div class="cover-subtitle">Where Attention Goes<br>Energy Flows</div></div>
+      <div class="zone-author"><div class="cover-author">Steven Rudolph</div></div>
+    </div>
+    <div class="label">Engagement</div>
+  </div>
+
+  <!-- MN (instrument) -->
+  <div class="cover-cell">
+    <div class="cover thread-mn tier-instrument">
+      <div class="bookmark bm-instrument bm-mn"><span class="bookmark-label">INSTRUMENT</span></div>
+      <div class="zone-pad"></div>
+      <div class="zone-mark">
+        <div class="struct-mark-container">
+          <svg width="52" height="52" viewBox="0 0 50 50">
+            <rect class="struct-mark mark-mn" x="8" y="18" width="7" height="22" rx="1" stroke-width="2.0" />
+            <rect class="struct-mark mark-mn" x="18" y="12" width="7" height="28" rx="1" stroke-width="2.0" />
+            <rect class="struct-mark mark-mn" x="28" y="22" width="7" height="18" rx="1" stroke-width="2.0" />
+            <rect class="struct-mark mark-mn" x="38" y="8"  width="7" height="32" rx="1" stroke-width="2.0" />
+          </svg>
+        </div>
+      </div>
+      <div class="zone-title"><div class="cover-title">Multiple<br>Natures</div></div>
+      <div class="zone-subtitle"><div class="cover-subtitle">Discover Your Range.<br>Live Your Spectrum.</div></div>
+      <div class="zone-author"><div class="cover-author">Steven Rudolph</div></div>
+    </div>
+    <div class="label">Multiple Natures</div>
+  </div>
+</div>
+
+<!-- SITE ELEMENTS -->
+<div class="section">
+  <h2>Site Text Hierarchy</h2>
+  <div class="text-samples">
+    <span style="color: var(--text-primary); font-weight: 600; font-size: 18px;">Primary — headings and emphasis</span>
+    <span style="color: var(--text-body);">Body — regular paragraph text reads like this</span>
+    <span style="color: var(--text-secondary);">Secondary — descriptions and labels</span>
+    <span style="color: var(--text-muted);">Muted — hints and metadata</span>
+    <span style="color: var(--text-quiet);">Quiet — barely visible</span>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Buttons &amp; Actions</h2>
+  <div class="btn-row">
+    <button class="btn btn-primary">Primary Action</button>
+    <button class="btn btn-accent">Accent Link</button>
+    <button class="btn" style="background: var(--site-accent-hover); color: var(--text-primary);">Hover State</button>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Tier Badges</h2>
+  <div class="badge-row">
+    <span class="badge" style="background: var(--badge-free-bg); color: var(--badge-free-text);">FREE</span>
+    <span class="badge" style="background: var(--badge-paid-bg); color: var(--badge-paid-text);">PAID</span>
+    <span class="badge" style="background: var(--badge-premium-bg); color: var(--badge-premium-text);">PREMIUM</span>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Thread Color Grid</h2>
+  <div class="swatch-row">
+    <div class="swatch" style="background: var(--thread-renergence); color: white;">BG</div>
+    <div class="swatch" style="background: var(--accent-renergence); color: white;">Accent</div>
+    <div class="swatch" style="background: var(--mark-renergence); color: white;">Mark</div>
+    <div style="font-size: 11px; color: var(--text-muted); display: flex; align-items: center; margin-left: 8px;">Renergence</div>
+  </div>
+  <div class="swatch-row">
+    <div class="swatch" style="background: var(--thread-hnr); color: white;">BG</div>
+    <div class="swatch" style="background: var(--accent-hnr); color: white;">Accent</div>
+    <div class="swatch" style="background: var(--mark-hnr); color: white;">Mark</div>
+    <div style="font-size: 11px; color: var(--text-muted); display: flex; align-items: center; margin-left: 8px;">HNR</div>
+  </div>
+  <div class="swatch-row">
+    <div class="swatch" style="background: var(--thread-engagement); color: white;">BG</div>
+    <div class="swatch" style="background: var(--accent-engagement); color: white;">Accent</div>
+    <div class="swatch" style="background: var(--mark-engagement); color: white;">Mark</div>
+    <div style="font-size: 11px; color: var(--text-muted); display: flex; align-items: center; margin-left: 8px;">Engagement</div>
+  </div>
+  <div class="swatch-row">
+    <div class="swatch" style="background: var(--thread-mn); color: white;">BG</div>
+    <div class="swatch" style="background: var(--accent-mn); color: white;">Accent</div>
+    <div class="swatch" style="background: var(--mark-mn); color: white;">Mark</div>
+    <div style="font-size: 11px; color: var(--text-muted); display: flex; align-items: center; margin-left: 8px;">MN</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Surfaces</h2>
+  <div class="swatch-row">
+    <div class="swatch light" style="background: var(--surface-page); color: var(--text-muted);">Page</div>
+    <div class="swatch light" style="background: var(--surface-card); color: var(--text-muted);">Card</div>
+    <div class="swatch light" style="background: var(--surface-card-border); color: var(--text-muted);">Border</div>
+    <div class="swatch light" style="background: var(--surface-divider); color: var(--text-muted);">Divider</div>
+    <div class="swatch light" style="background: var(--surface-divider-light); color: var(--text-muted);">Light</div>
+  </div>
+</div>
+
+</body>
+</html>

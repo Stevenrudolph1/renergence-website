@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 50 50">
+  <!-- Move Library: Numbered list — catalog of moves -->
+  <line x1="6" y1="9" x2="12" y2="9" stroke="#3858c0" stroke-width="2" fill="none" />
+  <line x1="16" y1="9" x2="44" y2="9" stroke="#3858c0" stroke-width="1.4" fill="none" />
+  <line x1="6" y1="21" x2="12" y2="21" stroke="#3858c0" stroke-width="2" fill="none" />
+  <line x1="16" y1="21" x2="38" y2="21" stroke="#3858c0" stroke-width="1.4" fill="none" />
+  <line x1="6" y1="33" x2="12" y2="33" stroke="#3858c0" stroke-width="2" fill="none" />
+  <line x1="16" y1="33" x2="44" y2="33" stroke="#3858c0" stroke-width="1.4" fill="none" />
+  <line x1="6" y1="45" x2="12" y2="45" stroke="#3858c0" stroke-width="2" fill="none" />
+  <line x1="16" y1="45" x2="34" y2="45" stroke="#3858c0" stroke-width="1.4" fill="none" />
+</svg>

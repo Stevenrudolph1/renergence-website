@@ -1,0 +1,275 @@
+/* ============================================
+   SR COVERS v12.1
+   ============================================
+   
+   Cover layout, bookmark tabs, marks, tiers.
+   All values reference design tokens.
+   
+   Requires: sr-design-tokens.css loaded first.
+   
+   Usage:
+     @import url('sr-design-tokens.css');
+     @import url('sr-covers.css');
+   
+   Last updated: 2026-02-09
+   ============================================ */
+
+/* ============================================
+   COVER CANVAS
+   ============================================ */
+.cover {
+  width: var(--cover-width);
+  height: var(--cover-height);
+  position: relative;
+  display: grid;
+  grid-template-rows: var(--cover-grid);
+  grid-template-columns: 1fr;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: var(--cover-shadow);
+}
+
+/* ============================================
+   GRID ZONES
+   ============================================ */
+.zone-pad { grid-row: 1; }
+
+.zone-mark {
+  grid-row: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 16px;
+  z-index: 2;
+}
+
+.zone-title {
+  grid-row: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  z-index: 2;
+}
+
+.zone-subtitle {
+  grid-row: 4;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 14px;
+  z-index: 2;
+}
+
+.zone-author {
+  grid-row: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* ============================================
+   THREAD BACKGROUNDS
+   ============================================ */
+.thread-renergence { background: var(--thread-renergence); }
+.thread-hnr { background: var(--thread-hnr); }
+.thread-engagement { background: var(--thread-engagement); }
+.thread-mn { background: var(--thread-mn); }
+
+/* ============================================
+   BOOKMARK TAB
+   
+   Height: fixed at 100px across ALL tiers.
+   Width: encodes tier (3 / 14 / 18px).
+   Hard bottom border: reads as physical object.
+   ============================================ */
+.bookmark {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 5;
+  height: var(--tab-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: var(--tab-border-bottom);
+  border-left: var(--tab-border-left);
+}
+
+.bookmark-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-body);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tab-label-spacing);
+  text-transform: uppercase;
+  color: var(--text-tab-label);
+  white-space: nowrap;
+}
+
+/* Gateway: whisper — doorway, not destination */
+.bm-gateway {
+  width: var(--tab-width-gateway);
+  border-bottom: none;
+  opacity: var(--tab-opacity-gateway);
+}
+.bm-gateway .bookmark-label { display: none; }
+
+/* Depth: present — labeled, the real books start here */
+.bm-depth {
+  width: var(--tab-width-depth);
+}
+.bm-depth .bookmark-label {
+  font-size: var(--tab-label-size-depth);
+}
+
+/* Instrument: authority — widest tab, most consequence */
+.bm-instrument {
+  width: var(--tab-width-instrument);
+}
+.bm-instrument .bookmark-label {
+  font-size: var(--tab-label-size-instrument);
+}
+
+/* Tab thread colors */
+.bm-renergence { background: var(--accent-renergence); }
+.bm-hnr { background: var(--accent-hnr); }
+.bm-engagement { background: var(--accent-engagement); }
+.bm-mn { background: var(--accent-mn); }
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+.cover-title {
+  font-family: var(--font-title);
+  font-weight: var(--weight-bold);
+  font-size: var(--title-size-default);
+  line-height: var(--title-line-height);
+  letter-spacing: var(--title-spacing);
+  text-transform: uppercase;
+  color: var(--text-title-paid);
+}
+
+.cover-subtitle {
+  font-family: var(--font-body);
+  font-weight: var(--weight-light);
+  font-size: var(--subtitle-size);
+  line-height: var(--subtitle-line-height);
+  letter-spacing: var(--subtitle-spacing);
+  color: var(--text-subtitle-paid);
+}
+
+/* SIGNATURE CONSTRAINT: Author subordinate to system. Always. */
+.cover-author {
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: var(--author-size);
+  letter-spacing: var(--author-spacing);
+  text-transform: uppercase;
+  color: var(--text-author);
+}
+
+/* ============================================
+   TIER TENSION
+   
+   Gateways: lighter text, faded tab.
+   Paid: full weight, labeled tab, hard edge.
+   The visual weight difference makes gateways
+   feel like doorways — you sense the gravity
+   is elsewhere.
+   ============================================ */
+.tier-gateway .cover-title {
+  font-weight: var(--weight-bold);
+  color: var(--text-title-gateway);
+}
+
+.tier-gateway .cover-subtitle {
+  color: var(--text-subtitle-gateway);
+}
+
+.tier-paid .cover-title {
+  color: var(--text-title-paid);
+}
+
+/* ============================================
+   STRUCTURAL MARKS
+   
+   Container at 0.65 opacity.
+   Strokes at 1.6 default, 1.8 heavy, 2.0 MN.
+   These are geometric facts, not decorations.
+   ============================================ */
+.struct-mark-container {
+  opacity: var(--mark-opacity);
+}
+
+.struct-mark {
+  fill: none;
+  stroke-width: var(--mark-stroke-width);
+}
+
+/* Mark stroke colors */
+.mark-renergence { stroke: var(--mark-renergence); }
+.mark-hnr { stroke: var(--mark-hnr); }
+.mark-engagement { stroke: var(--mark-engagement); }
+.mark-mn { stroke: var(--mark-mn); }
+
+/* Mark fill colors */
+.mark-fill-renergence { fill: var(--mark-renergence); stroke: none; }
+.mark-fill-hnr { fill: var(--mark-hnr); stroke: none; }
+.mark-fill-engagement { fill: var(--mark-engagement); stroke: none; }
+.mark-fill-mn { fill: var(--mark-mn); stroke: none; }
+
+/* ============================================
+   RESPONSIVE SCALING
+   
+   Covers scale proportionally.
+   Use these classes for different contexts.
+   ============================================ */
+.cover-sm {
+  width: calc(var(--cover-width) * 0.6);
+  height: calc(var(--cover-height) * 0.6);
+  transform: scale(0.6);
+  transform-origin: top left;
+}
+
+.cover-lg {
+  width: calc(var(--cover-width) * 1.5);
+  height: calc(var(--cover-height) * 1.5);
+  transform: scale(1.5);
+  transform-origin: top left;
+}
+
+.cover-thumb {
+  transform: scale(0.343);
+  transform-origin: top left;
+}
+
+/* ============================================
+   WEBSITE GRID LAYOUTS
+   
+   Use these for displaying covers in rows
+   on the website (books page, catalog, etc.)
+   ============================================ */
+.covers-row {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.cover-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cover-label {
+  font-family: var(--font-body);
+  font-size: 9px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: var(--space-xs);
+  width: var(--cover-width);
+}

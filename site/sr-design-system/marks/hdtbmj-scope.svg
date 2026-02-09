@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 50 50">
+  <!-- HDTBMJ: Expanding boxes with outward arrows -->
+  <rect x="18" y="18" width="14" height="14" stroke="#3858c0" stroke-width="2" fill="none" />
+  <rect x="10" y="10" width="30" height="30" stroke="#3858c0" stroke-width="1.6" stroke-dasharray="4,3" fill="none" />
+  <line x1="10" y1="10" x2="5" y2="5" stroke="#3858c0" stroke-width="1.6" fill="none" />
+  <line x1="40" y1="10" x2="45" y2="5" stroke="#3858c0" stroke-width="1.6" fill="none" />
+  <line x1="10" y1="40" x2="5" y2="45" stroke="#3858c0" stroke-width="1.6" fill="none" />
+  <line x1="40" y1="40" x2="45" y2="45" stroke="#3858c0" stroke-width="1.6" fill="none" />
+</svg>

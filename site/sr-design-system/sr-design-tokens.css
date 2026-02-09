@@ -1,0 +1,325 @@
+/* ============================================
+   SR DESIGN TOKENS v12.1
+   ============================================
+
+   SINGLE SOURCE OF TRUTH.
+   Every page, component, and cover imports this file.
+   Change a value here → entire site updates.
+
+   Usage:  @import url('sr-design-tokens.css');
+   Then:   background: var(--thread-renergence);
+
+   PALETTE: Dusk Ember
+   Source: #0D1164 · #640D5F · #EA2264 · #F78D60
+   Threads: palette hues at matched tonal depth (navy, purple, crimson, warm)
+
+   Last updated: 2026-02-09
+   ============================================ */
+
+:root {
+
+  /* ============================================
+     FONTS
+     ============================================ */
+  --font-title: 'Libre Baskerville', serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-system: 'DM Sans', sans-serif;
+
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ============================================
+     THREAD BACKGROUNDS
+     Using the vibrant Dusk Ember palette directly
+     for maximum color impact on covers and accents.
+     ============================================ */
+  --thread-renergence: #0D1164;    /* vibrant navy (palette P1)  */
+  --thread-hnr: #640D5F;           /* vibrant maroon (palette P2)*/
+  --thread-engagement: #EA2264;    /* vibrant pink (palette P3)*/
+  --thread-mn: #F78D60;            /* vibrant orange (palette P4) */
+
+  /* ============================================
+     THREAD ACCENTS (bookmark tabs)
+     Lighter tints for contrast on vibrant backgrounds
+     ============================================ */
+  --accent-renergence: #4A6FFF;    /* lighter bright blue         */
+  --accent-hnr: #C466BB;           /* lighter bright purple       */
+  --accent-engagement: #FF5A8A;    /* lighter bright pink      */
+  --accent-mn: #FFB088;            /* lighter warm orange        */
+
+  /* ============================================
+     THREAD MARKS (SVG strokes + fills)
+     Light/white tints for contrast on vibrant backgrounds
+     ============================================ */
+  --mark-renergence: rgba(255, 255, 255, 0.35);      /* light navy tint           */
+  --mark-hnr: rgba(255, 255, 255, 0.35);             /* light purple tint         */
+  --mark-engagement: rgba(255, 255, 255, 0.4);       /* light pink tint        */
+  --mark-mn: rgba(139, 69, 19, 0.3);                 /* warm brown tint for orange bg          */
+
+  /* ============================================
+     TEXT COLORS — COVER
+     White opacity hierarchy - higher contrast for vibrant backgrounds
+     ============================================ */
+  --text-title-paid: #ffffff;
+  --text-title-gateway: rgba(255, 255, 255, 0.9);
+  --text-subtitle-paid: rgba(255, 255, 255, 0.85);
+  --text-subtitle-gateway: rgba(255, 255, 255, 0.75);
+  --text-author: rgba(255, 255, 255, 0.7);
+  --text-tab-label: rgba(255, 255, 255, 0.95);
+
+  /* ============================================
+     TEXT COLORS — SITE
+     HIGH-CONTRAST neutrals — not colored.
+     Palette color reserved for accent/link only.
+     ============================================ */
+  --text-primary: #1e1a28;
+  --text-body: #383340;
+  --text-secondary: #706878;
+  --text-muted: #9e96a5;
+  --text-quiet: #c0b8c6;
+
+  /* ============================================
+     SURFACE COLORS — SITE
+     Very faint warm-purple tint — ≤8% saturation
+     ============================================ */
+  --surface-page: #f7f4f6;
+  --surface-card: #ffffff;
+  --surface-card-border: #e4dde2;
+  --surface-divider: #dad4d8;
+  --surface-divider-light: #f0ecee;
+
+  /* ============================================
+     COVER DIMENSIONS
+     ============================================ */
+  --cover-width: 175px;
+  --cover-height: 262px;
+  --cover-aspect: 1.497;
+  --cover-shadow: 0 1px 4px rgba(13,17,100,0.18), 0 8px 24px rgba(13,17,100,0.12);
+
+  /* ============================================
+     COVER GRID (5-zone vertical stack)
+     ============================================ */
+  --zone-pad: 24px;
+  --zone-mark: 78px;
+  --zone-title: 78px;
+  --zone-subtitle: 50px;
+  --zone-author: 32px;
+  --cover-grid: var(--zone-pad) var(--zone-mark) var(--zone-title) var(--zone-subtitle) var(--zone-author);
+
+  /* ============================================
+     BOOKMARK TAB
+     Height is FIXED. Width encodes tier.
+     ============================================ */
+  --tab-height: 100px;
+  --tab-width-gateway: 8px;
+  --tab-width-depth: 14px;
+  --tab-width-instrument: 18px;
+  --tab-opacity-gateway: 0.6;
+  --tab-border-bottom: 2px solid rgba(255,255,255,0.12);
+  --tab-border-left: 1px solid rgba(255,255,255,0.06);
+
+  /* ============================================
+     TYPOGRAPHY — COVER
+     ============================================ */
+  --title-size-default: 14.5px;
+  --title-line-height: 1.2;
+  --title-spacing: 0.05em;
+
+  --subtitle-size: 8.5px;
+  --subtitle-line-height: 1.5;
+  --subtitle-spacing: 0.015em;
+
+  /* SIGNATURE CONSTRAINT: Author always quietest */
+  --author-size: 5.5px;
+  --author-spacing: 0.16em;
+
+  --tab-label-size-depth: 4.8px;
+  --tab-label-size-instrument: 5.2px;
+  --tab-label-spacing: 0.2em;
+
+  /* ============================================
+     STRUCTURAL MARKS
+     ============================================ */
+  --mark-opacity: 0.80;
+  --mark-stroke-width: 1.6;
+  --mark-stroke-width-heavy: 1.8;
+  --mark-stroke-width-mn: 2.0;  /* MN is always heaviest */
+
+  /* ============================================
+     TYPOGRAPHY — SITE (type scale)
+     8 steps: xs → 3xl. Fluid via clamp().
+     Desktop-first: max is desktop, min is mobile.
+     Formula: clamp(mobile, preferred, desktop)
+     ============================================ */
+  --text-xs: 0.75rem;                              /* 12px — static, too small to scale    */
+  --text-sm: 0.85rem;                              /* 13.6px — static, captions/meta       */
+  --text-base: clamp(0.875rem, 0.82rem + 0.2vw, 0.95rem);   /* 14–15.2px — body/nav       */
+  --text-md: clamp(0.9375rem, 0.87rem + 0.25vw, 1rem);      /* 15–16px — paragraphs       */
+  --text-lg: clamp(1rem, 0.9rem + 0.4vw, 1.15rem);          /* 16–18.4px — card headings  */
+  --text-xl: clamp(1.125rem, 0.95rem + 0.6vw, 1.35rem);     /* 18–21.6px — sub-headings   */
+  --text-2xl: clamp(1.5rem, 1.1rem + 1.5vw, 2rem);          /* 24–32px — section headings */
+  --text-3xl: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);         /* 28–40px — hero titles      */
+
+  --line-tight: 1.2;       /* titles, hero              */
+  --line-snug: 1.35;       /* card headings             */
+  --line-normal: 1.5;      /* subtitles, descriptions   */
+  --line-relaxed: 1.7;     /* body paragraphs           */
+
+  --tracking-tight: 0.015em;
+  --tracking-normal: 0.03em;
+  --tracking-wide: 0.12em;   /* labels, badges            */
+  --tracking-caps: 0.5px;    /* uppercase small text       */
+
+  /* ============================================
+     SPACING — SITE
+     ============================================ */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 60px;
+  --space-section: 50px;
+
+  /* ============================================
+     TIER BADGE COLORS
+     ============================================ */
+  --badge-free-bg: #e0e2f0;
+  --badge-free-text: #2230A0;
+  --badge-paid-bg: #f0e0e6;
+  --badge-paid-text: #500E24;
+  --badge-premium-bg: #f0eae0;
+  --badge-premium-text: #50260E;
+
+  /* ============================================
+     SITE ACTION COLORS
+     These use the palette directly:
+     #0D1164 for buttons/footer
+     #640D5F for hover
+     #EA2264 for accent/links
+     #F78D60 for highlight
+     ============================================ */
+  --site-action-bg: #0D1164;
+  --site-action-hover: #640D5F;
+  --site-accent: #EA2264;
+  --site-accent-hover: #F78D60;
+
+  /* ============================================
+     SITE SPACING (rem-based, responsive)
+     These map to the website layout grid.
+     Cover spacing uses the px tokens above.
+     ============================================ */
+  --space-site-xs: 0.5rem;
+  --space-site-sm: 1rem;
+  --space-site-md: 2rem;
+  --space-site-lg: 4rem;
+  --space-site-xl: 6rem;
+
+  /* ============================================
+     SITE LAYOUT
+     ============================================ */
+  --layout-max-width: 1200px;
+  --content-narrow: 600px;   /* intros, single-column   */
+  --content-mid: 700px;      /* subheadings, statements */
+  --content-wide: 800px;     /* thread sections, items  */
+  --content-full: 1000px;    /* grids, frameworks       */
+
+  /* ============================================
+     SITE MISCELLANEOUS
+     ============================================ */
+  --site-line-height: 1.6;
+  --site-radius: 8px;
+  --site-radius-sm: 4px;
+  --site-radius-xs: 3px;     /* badges, status tags     */
+  --border-thin: 1px;
+  --border-accent: 4px;      /* thread accent borders   */
+  --border-subtle: 3px;      /* depth-book sidebar      */
+
+  /* ============================================
+     SHADOWS
+     ============================================ */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.10);
+  --shadow-lg: 0 6px 20px rgba(0,0,0,0.18);
+  --shadow-hover: 0 6px 20px rgba(0,0,0,0.20);
+
+  /* ============================================
+     INTERACTION
+     ============================================ */
+  --hover-lift-sm: translateY(-1px);
+  --hover-lift-md: translateY(-2px);
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+
+  /* ============================================
+     LAYER SURFACES
+     Tier-tinted backgrounds for book layers.
+     These reference palette but at near-zero opacity.
+     ============================================ */
+  --surface-layer-gateway: rgba(0,0,0,0.01);
+  --surface-layer-depth: rgba(0,0,0,0.02);
+  --surface-layer-instruments: rgba(0,0,0,0.03);
+
+  /* ============================================
+     FOOTER
+     White-based opacity for text on dark footer bg.
+     ============================================ */
+  --footer-text: rgba(255, 255, 255, 0.8);
+  --footer-text-muted: rgba(255, 255, 255, 0.7);
+  --footer-border: rgba(255, 255, 255, 0.2);
+  --footer-text-bright: rgba(255, 255, 255, 0.9);
+
+  /* ============================================
+     BUTTON TOKENS
+     ============================================ */
+  --btn-padding-y: 0.75rem;
+  --btn-padding-x: 1.5rem;
+  --btn-padding-y-sm: 0.6rem;
+  --btn-padding-x-sm: 1.25rem;
+  --btn-border-width: 2px;
+
+  /* ============================================
+     COMPONENT COMPOSITION
+     Semantic tokens for cards, sections, grids.
+     Change here → every card/section/grid updates.
+     Ratio: card-padding ≈ section-padding × 0.5
+     ============================================ */
+  --card-padding: clamp(1rem, 0.8rem + 0.5vw, 1.5rem);
+  --card-padding-sm: clamp(0.75rem, 0.6rem + 0.3vw, 1rem);
+  --card-padding-lg: clamp(1.25rem, 1rem + 0.7vw, 2rem);
+  --card-gap: 1.25rem;
+
+  --section-padding-y: clamp(2.5rem, 2rem + 1.5vw, 4rem);
+  --section-padding-y-lg: clamp(3rem, 2rem + 2.5vw, 6rem);
+
+  --grid-gap: clamp(1.25rem, 1rem + 0.8vw, 2rem);
+  --grid-gap-sm: 1.25rem;
+  --grid-gap-lg: clamp(1.5rem, 1rem + 1.2vw, 2.5rem);
+
+  /* ── Breakpoints (reference only, used in @media) ── */
+  /* --bp-mobile: 600px;   single column               */
+  /* --bp-tablet: 768px;   nav collapse, 1-col grids   */
+  /* --bp-desktop: 1024px; 2-col → full grids           */
+
+  /* ============================================
+     PROSE RHYTHM & TYPOGRAPHY
+     ============================================ */
+  /* ── Prose rhythm ── */
+  --prose-gap: 1.25rem;
+  --prose-heading-above: 2.5rem;
+  --prose-heading-below: 0.75rem;
+  --prose-max-width: 65ch;
+  --prose-list-gap: 0.5rem;
+
+  /* ── Heading vertical rhythm ── */
+  --heading-h1-above: 3rem;
+  --heading-h1-below: 1rem;
+  --heading-h2-above: 2.5rem;
+  --heading-h2-below: 0.75rem;
+  --heading-h3-above: 2rem;
+  --heading-h3-below: 0.5rem;
+  --heading-h4-above: 1.5rem;
+  --heading-h4-below: 0.4rem;
+}

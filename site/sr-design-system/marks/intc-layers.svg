@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52" height="50" viewBox="0 0 50 48">
+  <!-- INTC: Real layers + fake layers with X marks -->
+  <line x1="6" y1="8" x2="44" y2="8" stroke="#3858c0" stroke-width="2" fill="none" />
+  <line x1="6" y1="20" x2="44" y2="20" stroke="#3858c0" stroke-width="1.6" stroke-dasharray="4,3" fill="none" />
+  <line x1="38" y1="17" x2="44" y2="23" stroke="#3858c0" stroke-width="1.2" fill="none" />
+  <line x1="44" y1="17" x2="38" y2="23" stroke="#3858c0" stroke-width="1.2" fill="none" />
+  <line x1="6" y1="32" x2="44" y2="32" stroke="#3858c0" stroke-width="1.6" stroke-dasharray="4,3" fill="none" />
+  <line x1="38" y1="29" x2="44" y2="35" stroke="#3858c0" stroke-width="1.2" fill="none" />
+  <line x1="44" y1="29" x2="38" y2="35" stroke="#3858c0" stroke-width="1.2" fill="none" />
+  <line x1="6" y1="44" x2="44" y2="44" stroke="#3858c0" stroke-width="2" fill="none" />
+</svg>

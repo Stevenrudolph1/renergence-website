@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52" height="48" viewBox="0 0 50 42">
+  <!-- HNR Gateway: Load distribution — one node splitting to three -->
+  <circle cx="25" cy="7" r="4" fill="#3858c0" opacity="0.65" />
+  <line x1="25" y1="11" x2="25" y2="18" stroke="#3858c0" stroke-width="1.8" fill="none" />
+  <line x1="25" y1="18" x2="8" y2="36" stroke="#3858c0" stroke-width="1.8" fill="none" />
+  <line x1="25" y1="18" x2="25" y2="36" stroke="#3858c0" stroke-width="1.8" fill="none" />
+  <line x1="25" y1="18" x2="42" y2="36" stroke="#3858c0" stroke-width="1.8" fill="none" />
+</svg>

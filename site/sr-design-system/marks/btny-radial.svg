@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 50 50">
+  <!-- Built to Need You: Center radiating to locked nodes -->
+  <circle cx="25" cy="25" r="5" fill="#3858c0" opacity="0.65" />
+  <line x1="25" y1="25" x2="9" y2="9" stroke="#3858c0" stroke-width="1.8" fill="none" />
+  <line x1="25" y1="25" x2="41" y2="9" stroke="#3858c0" stroke-width="1.8" fill="none" />
+  <line x1="25" y1="25" x2="9" y2="41" stroke="#3858c0" stroke-width="1.8" fill="none" />
+  <line x1="25" y1="25" x2="41" y2="41" stroke="#3858c0" stroke-width="1.8" fill="none" />
+  <circle cx="9" cy="9" r="3" fill="#3858c0" opacity="0.4" />
+  <circle cx="41" cy="9" r="3" fill="#3858c0" opacity="0.4" />
+  <circle cx="9" cy="41" r="3" fill="#3858c0" opacity="0.4" />
+  <circle cx="41" cy="41" r="3" fill="#3858c0" opacity="0.4" />
+</svg>
