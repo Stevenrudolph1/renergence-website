@@ -1,7 +1,0 @@
-name: xavigate-website
-static_sites:
-  - name: xavigate-site
-    github:
-      branch: main
-      deploy_on_push: true
-    source_dir: site
