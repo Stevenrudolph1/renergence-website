@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(~/.claude/agents/fast-worker.md << 'EOF'\n---\nname: fast-worker\ndescription: Handles routine implementation, file operations, and well-defined coding tasks\ntools: Read, Write, Bash, Glob, Grep\nmodel: haiku\n---\n\nYou are a fast implementation specialist. Execute well-defined tasks efficiently. Focus on clean, working code that matches existing patterns.\nEOF)",
+      "Bash(chmod:*)",
+      "Bash(python3:*)",
+      "Bash(./build.sh:*)",
+      "Bash(ls:*)",
+      "Bash(if [ -d \"site/sr-design-system/docs\" ])",
+      "Bash(then mv site/sr-design-system/docs/* documentation/)",
+      "Bash(fi:*)",
+      "Bash(./.claude/skills/design-system/pipeline/build.sh:*)",
+      "Bash(grep:*)",
+      "Bash(gh auth:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh repo create:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}
