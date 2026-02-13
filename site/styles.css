@@ -1137,7 +1137,7 @@ body {
 .depth-books {
     display: flex;
     flex-direction: column;
-    gap: var(--space-site-sm);
+    gap: var(--space-site-md);
 }
 
 .depth-book {
@@ -1145,6 +1145,46 @@ body {
     background-color: var(--surface-page);
     border-radius: var(--site-radius-sm);
     border-left: 3px solid var(--surface-card-border);
+    display: flex;
+    gap: var(--space-site-md);
+    align-items: flex-start;
+}
+
+.depth-book-cover {
+    flex-shrink: 0;
+}
+
+.depth-book-cover .cover {
+    transform: scale(0.52);
+    transform-origin: top left;
+    width: var(--cover-width);
+    height: var(--cover-height);
+}
+
+.depth-book-cover-wrap {
+    width: 91px;
+    height: 136px;
+    overflow: hidden;
+}
+
+.depth-book-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.depth-book-price {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-site-xs);
+}
+
+.depth-book-formats {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+    margin-bottom: var(--space-site-xs);
 }
 
 .thread-renergence-detail .depth-book { border-left-color: var(--accent-renergence); }
@@ -1163,6 +1203,16 @@ body {
     color: var(--text-secondary);
     margin-bottom: var(--space-site-xs);
     line-height: var(--line-normal);
+}
+
+@media (max-width: 600px) {
+    .depth-book {
+        flex-direction: column;
+    }
+    .depth-book-cover-wrap {
+        width: 91px;
+        height: 136px;
+    }
 }
 
 /* ============================================
