@@ -423,20 +423,20 @@ body {
 .hero {
     padding: var(--space-site-xl) 0;
     text-align: center;
-    background-color: var(--surface-page);
+    background-color: var(--thread-renergence);
 }
 
 .hero h1 {
     font-size: var(--text-3xl);
     font-weight: var(--weight-semibold);
-    color: var(--text-primary);
+    color: #ffffff;
     margin-bottom: var(--space-site-sm);
     line-height: var(--line-tight);
 }
 
 .subheadline {
     font-size: var(--text-xl);
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.8);
     max-width: var(--content-mid);
     margin: 0 auto;
     line-height: var(--line-normal);
@@ -444,16 +444,24 @@ body {
 
 .hero-credential {
     font-size: var(--text-base);
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.7);
     margin-top: var(--space-site-sm);
     letter-spacing: var(--tracking-caps);
 }
 
 .hero-start {
     font-size: var(--text-lg);
-    color: var(--text-primary);
+    color: rgba(255, 255, 255, 0.9);
     margin-top: var(--space-site-md);
     font-weight: var(--weight-medium);
+}
+
+.hero-mark {
+    margin-bottom: var(--space-site-sm);
+}
+
+.hero-mark svg {
+    opacity: 0.5;
 }
 
 /* ============================================
