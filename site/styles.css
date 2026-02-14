@@ -3162,6 +3162,8 @@ body {
     white-space: normal;
     width: 220px;
     text-align: left;
+    text-transform: none;
+    letter-spacing: normal;
     z-index: 10;
     pointer-events: none;
 }
