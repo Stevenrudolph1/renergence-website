@@ -40,6 +40,7 @@
   --thread-hnr: #640D5F;           /* vibrant maroon (palette P2)*/
   --thread-engagement: #EA2264;    /* vibrant pink (palette P3)*/
   --thread-mn: #F78D60;            /* vibrant orange (palette P4) */
+  --thread-mn-deep: #C96B3C;       /* deeper MN orange — white text safe (≥4.5:1) */
 
   /* ============================================
      THREAD ACCENTS (bookmark tabs)

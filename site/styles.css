@@ -1395,27 +1395,7 @@ body {
 }
 
 .course-hero--mn {
-    background: var(--thread-mn);
-}
-
-.course-hero--mn h1 {
-    color: var(--text-primary);
-}
-
-.course-hero--mn .page-intro {
-    color: rgba(30, 26, 40, 0.75);
-}
-
-.course-hero--mn .course-hero__back {
-    color: rgba(30, 26, 40, 0.55);
-}
-
-.course-hero--mn .course-hero__back:hover {
-    color: rgba(30, 26, 40, 0.85);
-}
-
-.course-hero--mn .course-hero__back:focus-visible {
-    outline-color: rgba(30, 26, 40, 0.6);
+    background: var(--thread-mn-deep);
 }
 
 .course-hero--engagement {
