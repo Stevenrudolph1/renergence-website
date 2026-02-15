@@ -1342,6 +1342,10 @@ body {
     color: rgba(255, 255, 255, 0.85);
 }
 
+.course-hero .course-hero__back-wrap {
+    text-align: left;
+}
+
 .course-hero .course-hero__back {
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
