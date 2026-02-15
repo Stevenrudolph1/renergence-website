@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Xavigate</h4>
+                    <h4>Renergence</h4>
                     <ul>
                         <li><a href="${pathPrefix}about.html">About</a></li>
                         <li><a href="${pathPrefix}our-model.html">Our Model</a></li>
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; ${new Date().getFullYear()} Xavigate. All rights reserved.</p>
+                <p>&copy; ${new Date().getFullYear()} Renergence. All rights reserved.</p>
             </div>
         </div>
     </footer>

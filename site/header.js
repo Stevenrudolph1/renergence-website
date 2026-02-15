@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const headerHTML = `
         <nav class="nav" aria-label="Main navigation">
             <div class="nav-container">
-                <div class="logo"><a href="${pathPrefix}index.html">Xavigate</a></div>
+                <div class="logo"><a href="${pathPrefix}index.html">Renergence<sup style="font-size:0.45em;vertical-align:super;opacity:0.6;">&trade;</sup></a></div>
                 <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                     <span></span>
                     <span></span>
