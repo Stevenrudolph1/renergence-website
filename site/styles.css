@@ -3238,6 +3238,102 @@ select:focus-visible,
 /* ============================================
    Accessibility: Visually Hidden (screen reader only)
    ============================================ */
+/* ============================================
+   Course Accordions (details/summary)
+   ============================================ */
+.course-accordion {
+    border: 1px solid var(--surface-divider-light);
+    border-radius: var(--site-radius-md);
+    margin: var(--space-site-sm) 0;
+    background: var(--bg-card, #fff);
+}
+
+.course-accordion summary {
+    padding: var(--space-site-sm) var(--space-site-md);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-base);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-site-sm);
+}
+
+.course-accordion summary::-webkit-details-marker {
+    display: none;
+}
+
+.course-accordion summary::after {
+    content: "+";
+    font-size: var(--text-lg);
+    font-weight: var(--weight-normal);
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.course-accordion[open] summary::after {
+    content: "\2212"; /* minus sign */
+}
+
+.course-accordion summary:focus-visible {
+    outline: 2px solid var(--site-accent);
+    outline-offset: -2px;
+    border-radius: var(--site-radius-md);
+}
+
+.course-accordion .accordion-content {
+    padding: 0 var(--space-site-md) var(--space-site-md);
+}
+
+.course-accordion .accordion-content table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+}
+
+.course-accordion .accordion-content td {
+    padding: var(--space-site-xs) var(--space-site-sm);
+}
+
+.course-accordion .accordion-content td:first-child {
+    font-weight: var(--weight-semibold);
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.course-accordion .accordion-content td:last-child {
+    color: var(--text-secondary);
+}
+
+.course-accordion .accordion-content tr {
+    border-bottom: 1px solid var(--surface-divider-light);
+}
+
+.course-accordion .accordion-content tr:last-child {
+    border-bottom: none;
+}
+
+.course-accordion .accordion-meta {
+    margin-top: var(--space-site-sm);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+.course-accordion .tag-optional {
+    font-weight: var(--weight-normal);
+    color: var(--text-tertiary);
+    font-size: var(--text-xs);
+    margin-left: 0.25em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .course-accordion summary::after {
+        transition: none;
+    }
+}
+
 .sr-only {
     position: absolute;
     width: 1px;
