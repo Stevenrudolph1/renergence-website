@@ -2500,6 +2500,13 @@ body {
     margin-top: 0;
 }
 
+.about-content h3 {
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+    margin-top: var(--space-site-lg);
+    margin-bottom: var(--space-site-sm);
+}
+
 .about-content p {
     font-size: var(--text-md);
     color: var(--text-primary);
