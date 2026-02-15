@@ -106,12 +106,14 @@
     var div = document.createElement('div');
     div.className = 'nav-widget-msg nav-widget-msg-' + role;
 
-    // Convert download links in assistant messages
+    // Convert download links and basic markdown in assistant messages
     var html = escapeHtml(text);
     html = html.replace(
       /\[Download (.+?) →\]/g,
       '<a href="index.html#get-books" class="nav-widget-book-link">Download $1 \u2192</a>'
     );
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/(?<!\*)\*([^*]+?)\*(?!\*)/g, '<em>$1</em>');
     html = html.replace(/\n/g, '<br>');
     div.innerHTML = html;
 
