@@ -2507,6 +2507,19 @@ body {
     line-height: var(--line-relaxed);
 }
 
+.about-content ul,
+.about-content ol {
+    padding-left: var(--space-site-lg);
+    margin-bottom: var(--space-site-md);
+    font-size: var(--text-md);
+    line-height: var(--line-relaxed);
+    color: var(--text-primary);
+}
+
+.about-content li {
+    margin-bottom: var(--space-site-xs);
+}
+
 .contact-link {
     color: var(--site-accent);
     text-decoration: none;
