@@ -5156,11 +5156,14 @@ select:focus-visible,
    ============================================ */
 .section-image {
     width: 100%;
-    max-width: 480px;
+    max-width: 360px;
     aspect-ratio: 3 / 2;
     border-radius: var(--site-radius);
     overflow: hidden;
     flex-shrink: 0;
+}
+.section-image.section-image--portrait {
+    aspect-ratio: 4 / 5;
 }
 .section-image img {
     width: 100%;
@@ -5173,6 +5176,10 @@ select:focus-visible,
     gap: var(--space-xl);
     align-items: flex-start;
 }
+.content-with-image > div:first-child {
+    flex: 1;
+    min-width: 0;
+}
 .content-with-image .section-image {
     order: 2;
 }
@@ -5183,7 +5190,7 @@ select:focus-visible,
     .content-with-image {
         flex-direction: column;
     }
-    .content-with-image .section-image {
+    .section-image {
         max-width: 100%;
     }
 }
