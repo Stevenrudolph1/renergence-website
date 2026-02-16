@@ -1740,7 +1740,7 @@ body {
 .about-content:has(.pricing-grid),
 .about-content:has(.pricing-grid-wrap),
 .about-content:has(.course-materials-table) {
-    max-width: var(--content-full);
+    max-width: none;
 }
 
 .pricing-tracks {
