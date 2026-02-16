@@ -295,32 +295,66 @@ body {
     background-color: var(--surface-card);
     border-radius: var(--site-radius);
     border: var(--border-thin) solid var(--surface-card-border);
-    border-left: 4px solid var(--site-accent);
-    padding: var(--space-site-md);
+    border-left: var(--border-accent) solid var(--site-accent);
+    padding: var(--card-padding-lg);
     display: flex;
     flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-fast);
+    position: relative;
+}
+
+.pricing-card:hover {
+    box-shadow: var(--shadow-md);
 }
 
 .pricing-card-featured {
-    border-left-width: 4px;
-    border-left-color: var(--site-accent);
-    background-color: var(--surface-card);
-    margin-bottom: var(--space-site-lg);
+    border: 2px solid var(--site-accent);
+    border-left-width: var(--border-accent);
+    background-color: var(--surface-panel-engagement);
+    box-shadow: var(--shadow-md);
+}
+
+.pricing-card-featured:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* "Recommended" badge on featured pricing card */
+.pricing-badge {
+    display: inline-block;
+    background-color: var(--site-accent);
+    color: #ffffff;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    padding: 0.2rem 0.75rem;
+    border-radius: var(--site-radius-xs);
+    margin-bottom: var(--space-site-sm);
 }
 
 .pricing-header {
-    margin-bottom: var(--space-site-md);
-    padding-bottom: var(--space-site-md);
+    margin-bottom: var(--space-site-sm);
+    padding-bottom: var(--space-site-sm);
     border-bottom: var(--border-thin) solid var(--surface-card-border);
 }
 
 .pricing-header h3 {
     font-size: var(--text-xl);
     color: var(--text-primary);
-    margin: 0 0 var(--space-site-xs) 0;
+    margin: 0 0 0.25rem 0;
+}
+
+.pricing-header .pricing-amount {
+    font-family: var(--font-title);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-bold);
+    color: var(--site-accent);
+    line-height: var(--line-tight);
 }
 
 .pricing-amount {
+    font-family: var(--font-title);
     font-size: var(--text-2xl);
     font-weight: var(--weight-bold);
     color: var(--site-accent);
@@ -347,11 +381,11 @@ body {
 }
 
 .pricing-features li {
-    padding: var(--space-site-xs) 0;
-    padding-left: var(--space-site-md);
+    padding: 0.35rem 0;
+    padding-left: 1.25rem;
     position: relative;
     font-size: var(--text-sm);
-    color: var(--text-primary);
+    color: var(--text-body);
     line-height: var(--line-normal);
 }
 
@@ -1745,13 +1779,12 @@ body {
 .pricing-tracks {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-site-md);
+    gap: var(--grid-gap-lg);
     margin: var(--space-site-md) 0;
 }
 
 .pricing-tracks .pricing-card {
-    border-left-width: 3px;
-    padding: var(--space-site-md);
+    padding: var(--card-padding-lg);
 }
 
 .pricing-tracks .pricing-header {
@@ -1761,15 +1794,56 @@ body {
 
 .pricing-tracks .pricing-header h3 {
     font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.pricing-tracks .pricing-header .pricing-amount {
+    font-size: var(--text-2xl);
+    margin-top: 0.15rem;
 }
 
 .pricing-tracks .pricing-desc {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
+    color: var(--text-body);
     margin-bottom: var(--space-site-sm);
+    line-height: var(--line-relaxed);
 }
 
 .pricing-tracks .pricing-features li {
-    font-size: var(--text-xs);
+    font-size: var(--text-sm);
+    padding: 0.3rem 0;
+    padding-left: 1.25rem;
+}
+
+.pricing-tracks .pricing-cta {
+    display: block;
+    margin-top: auto;
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    background-color: var(--site-action-bg);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: var(--site-radius-sm);
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    text-align: center;
+    transition: background-color var(--transition-fast);
+    border: none;
+    cursor: pointer;
+}
+
+.pricing-tracks .pricing-cta:hover {
+    background-color: var(--site-action-hover);
+    opacity: 1;
+}
+
+.pricing-tracks .pricing-card-featured .pricing-cta {
+    background-color: var(--site-accent);
+}
+
+.pricing-tracks .pricing-card-featured .pricing-cta:hover {
+    background-color: var(--site-action-hover);
 }
 
 @media (max-width: 600px) {
