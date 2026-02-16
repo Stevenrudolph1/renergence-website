@@ -1902,11 +1902,11 @@ body {
     margin: 0 var(--space-site-xs);
 }
 
-/* Next-step course cards with thread-colored top borders */
-.next-step-card--hnr { border-top: 3px solid var(--thread-hnr); }
-.next-step-card--mn { border-top: 3px solid var(--thread-mn); }
-.next-step-card--engagement { border-top: 3px solid var(--thread-engagement); }
-.next-step-card--renergence { border-top: 3px solid var(--thread-renergence); }
+/* Next-step course cards with thread-colored borders */
+.next-step-card--hnr { border-top: 3px solid var(--thread-hnr); border-left-color: var(--thread-hnr); }
+.next-step-card--mn { border-top: 3px solid var(--thread-mn); border-left-color: var(--thread-mn); }
+.next-step-card--engagement { border-top: 3px solid var(--thread-engagement); border-left-color: var(--thread-engagement); }
+.next-step-card--renergence { border-top: 3px solid var(--thread-renergence); border-left-color: var(--thread-renergence); }
 
 /* ============================================
    Training Overview: Course Listing Cards
