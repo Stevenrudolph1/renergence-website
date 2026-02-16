@@ -944,6 +944,18 @@ body {
 .area-index-link.index-mn { border-bottom-color: var(--thread-mn); }
 .area-index-link.index-engagement { border-bottom-color: var(--thread-engagement); }
 
+.area-index-mark {
+    flex-shrink: 0;
+    margin-bottom: 2px;
+    opacity: 0.85;
+}
+
+/* Breathing room between area index and first product section */
+.area-index + .thread-detail,
+.area-index + .section-divider-mark {
+    margin-top: var(--space-site-xl);
+}
+
 /* Area detail link (books page) */
 .area-detail-link {
     margin-top: var(--space-site-md);
