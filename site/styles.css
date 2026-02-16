@@ -1077,11 +1077,11 @@ body {
    ============================================ */
 .thread-detail {
     padding: var(--space-site-xl) 0;
-    border-top: var(--border-thin) solid var(--surface-card-border);
 }
 
-.thread-detail:nth-child(even) {
-    background-color: var(--surface-page);
+.thread-hnr-detail,
+.thread-engagement-detail {
+    background-color: var(--surface-panel);
 }
 
 .thread-header {
@@ -1121,7 +1121,8 @@ body {
     border: var(--border-thin) solid var(--surface-card-border);
 }
 
-.thread-detail:nth-child(even) .thread-layer {
+.thread-hnr-detail .thread-layer,
+.thread-engagement-detail .thread-layer {
     background-color: white;
 }
 
@@ -1347,7 +1348,7 @@ body {
    Page Header (shared across pages)
    ============================================ */
 .page-header {
-    background-color: var(--surface-page);
+    background-color: var(--surface-panel-light);
     padding: var(--section-padding-y) 0;
     text-align: center;
 }
@@ -2233,7 +2234,7 @@ body {
 /* Frameworks list (single column) */
 .frameworks-list-section {
     padding: var(--section-padding-y-lg) 0;
-    background-color: var(--surface-page);
+    background-color: var(--surface-panel);
 }
 
 .framework-item {
@@ -2521,7 +2522,7 @@ body {
    ============================================ */
 .subscribe-section {
     padding: var(--section-padding-y-lg) 0;
-    background-color: var(--surface-page);
+    background-color: var(--surface-panel);
     border-top: var(--border-thin) solid var(--surface-card-border);
 }
 
