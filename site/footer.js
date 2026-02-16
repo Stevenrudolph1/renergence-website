@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="footer-col">
                     <h4>For Practitioners</h4>
                     <ul>
-                        <li><a href="${pathPrefix}pricing.html">Pricing</a></li>
+                        <li><a href="${pathPrefix}licensing.html">Licensing</a></li>
                         <li><a href="${pathPrefix}training.html">Training</a></li>
                     </ul>
                 </div>

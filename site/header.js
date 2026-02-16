@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     <li><a href="${pathPrefix}how-it-works.html" ${currentPage === 'how-it-works.html' ? 'class="active"' : ''}>How It Works</a></li>
                     <li><a href="${pathPrefix}products.html" ${currentPage === 'products.html' ? 'class="active"' : ''}>Products</a></li>
                     <li><a href="${pathPrefix}training.html" ${currentPage === 'training.html' || pathname.includes('/training/') ? 'class="active"' : ''}>Training</a></li>
-                    <li><a href="${pathPrefix}pricing.html" ${currentPage === 'pricing.html' ? 'class="active"' : ''}>Pricing</a></li>
                     <li><a href="${pathPrefix}about.html" ${currentPage === 'about.html' ? 'class="active"' : ''}>About</a></li>
                 </ul>
             </div>
