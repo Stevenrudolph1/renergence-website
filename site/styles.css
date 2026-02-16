@@ -3049,7 +3049,7 @@ body {
 }
 
 .about-section.alternate {
-    background-color: var(--surface-page);
+    background-color: var(--surface-panel);
 }
 
 .about-content {
@@ -4031,6 +4031,53 @@ select:focus-visible,
     flex-shrink: 0;
     margin: 0 var(--space-site-md);
     opacity: 0.15;
+}
+
+/* ============================================
+   Section Panels — alternating backgrounds
+   ============================================
+   Use .panel-alt on any <section> that should
+   stand out from its neighbors. Pairs with the
+   existing .about-section / .thread-detail patterns. */
+
+.panel-alt {
+    background-color: var(--surface-panel);
+}
+
+.panel-alt-light {
+    background-color: var(--surface-panel-light);
+}
+
+/* Thread-tinted panels */
+.panel-renergence { background-color: var(--surface-panel-renergence); }
+.panel-hnr        { background-color: var(--surface-panel-hnr); }
+.panel-engagement  { background-color: var(--surface-panel-engagement); }
+.panel-mn          { background-color: var(--surface-panel-mn); }
+
+/* ============================================
+   Section Rule — lightweight horizontal divider
+   ============================================
+   Thinner than the section-divider-mark. No SVG.
+   Use between sub-sections on long prose pages. */
+
+.section-rule {
+    border: none;
+    border-top: 1px solid var(--surface-divider);
+    margin: var(--section-padding-y) auto;
+    max-width: var(--content-mid);
+}
+
+.section-rule-wide {
+    border: none;
+    border-top: 1px solid var(--surface-divider);
+    margin: var(--section-padding-y) 0;
+}
+
+.section-rule-light {
+    border: none;
+    border-top: 1px solid var(--surface-divider-light);
+    margin: var(--section-padding-y) auto;
+    max-width: var(--content-mid);
 }
 
 .sr-only {

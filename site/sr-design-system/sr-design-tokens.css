@@ -92,6 +92,19 @@
   --surface-divider: #dad4d8;
   --surface-divider-light: #f0ecee;
 
+  /* Panel backgrounds — deeper than --surface-page for
+     visible alternation between content sections.
+     Warm-purple tint consistent with page palette. */
+  --surface-panel: #eeebef;            /* noticeably off-white, warm-purple */
+  --surface-panel-light: #f3f0f3;      /* halfway between card and panel */
+
+  /* Thread-tinted panels — very faint wash of each thread color.
+     Use for sections that belong to a specific area. */
+  --surface-panel-renergence: #ededfa;   /* faint navy-blue wash  */
+  --surface-panel-hnr: #f3edf2;          /* faint purple wash     */
+  --surface-panel-engagement: #faf0f2;   /* faint pink wash       */
+  --surface-panel-mn: #faf3ee;           /* faint warm-orange wash */
+
   /* ============================================
      COVER DIMENSIONS
      ============================================ */
