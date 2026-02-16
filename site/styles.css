@@ -1729,9 +1729,9 @@ body {
    Enrollment Details Box (training pages)
    ============================================ */
 .enrollment-details {
-    margin: var(--space-site-md) 0;
+    margin: var(--space-site-md) 0 0;
     padding: var(--space-site-md);
-    background-color: var(--surface-page);
+    background-color: var(--surface-card);
     border-radius: var(--site-radius-sm);
     border-left: 3px solid var(--site-accent);
 }
@@ -1741,6 +1741,7 @@ body {
 .enrollment-details--mn { border-left-color: var(--thread-mn); }
 .enrollment-details--engagement { border-left-color: var(--thread-engagement); }
 
+/* Legacy: ul-based enrollment details (other course pages) */
 .enrollment-details ul {
     margin: 0;
     padding: 0;
@@ -1755,6 +1756,54 @@ body {
 
 .enrollment-details li:last-child {
     margin-bottom: 0;
+}
+
+/* Headline fact (e.g. "3 modules · 20-25 hours") */
+.enrollment-details__headline {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-site-sm);
+    padding-bottom: var(--space-site-xs);
+    border-bottom: var(--border-thin) solid var(--surface-divider-light);
+    line-height: var(--line-snug);
+}
+
+/* Definition list for key-value pairs */
+.enrollment-details__list {
+    margin: 0;
+    padding: 0;
+}
+
+.enrollment-details__list dt {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: var(--space-site-xs);
+}
+
+.enrollment-details__list dt:first-child {
+    margin-top: 0;
+}
+
+.enrollment-details__list dd {
+    margin: 0.15rem 0 0;
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    line-height: var(--line-normal);
+}
+
+/* Closing note */
+.enrollment-details__note {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin: var(--space-site-sm) 0 0;
+    padding-top: var(--space-site-xs);
+    border-top: var(--border-thin) solid var(--surface-divider-light);
+    line-height: var(--line-normal);
+    font-style: italic;
 }
 
 /* ============================================
@@ -1902,11 +1951,214 @@ body {
     margin: 0 var(--space-site-xs);
 }
 
-/* Next-step course cards with thread-colored borders */
-.next-step-card--hnr { border-top: 3px solid var(--thread-hnr); border-left-color: var(--thread-hnr); }
-.next-step-card--mn { border-top: 3px solid var(--thread-mn); border-left-color: var(--thread-mn); }
-.next-step-card--engagement { border-top: 3px solid var(--thread-engagement); border-left-color: var(--thread-engagement); }
-.next-step-card--renergence { border-top: 3px solid var(--thread-renergence); border-left-color: var(--thread-renergence); }
+/* ============================================
+   Course "Who This Is For" Block
+   ============================================ */
+.course-who-block {
+    padding: var(--space-site-md) 0;
+}
+
+.course-who-block h2 {
+    margin-bottom: var(--space-site-sm);
+}
+
+.course-who-block p {
+    font-size: var(--text-lg);
+    line-height: var(--line-relaxed);
+    color: var(--text-body);
+    max-width: var(--prose-max-width);
+}
+
+/* ============================================
+   Course Outcome Cards (three-area grid)
+   ============================================ */
+.course-outcome-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--grid-gap);
+    margin: var(--space-site-md) 0;
+}
+
+.about-content:has(.course-outcome-grid) {
+    max-width: none;
+}
+
+.course-outcome-card {
+    background: var(--surface-card);
+    border-radius: var(--site-radius);
+    padding: var(--card-padding-lg);
+    border-top: 3px solid var(--surface-divider);
+    box-shadow: var(--shadow-sm);
+}
+
+.course-outcome-card h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    margin: 0 0 var(--space-site-xs);
+    line-height: var(--line-snug);
+}
+
+.course-outcome-card p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--line-relaxed);
+    margin: 0;
+}
+
+.course-outcome-card--hnr {
+    border-top-color: var(--thread-hnr);
+}
+
+.course-outcome-card--hnr h3 {
+    color: var(--thread-hnr);
+}
+
+.course-outcome-card--mn {
+    border-top-color: var(--thread-mn-deep);
+}
+
+.course-outcome-card--mn h3 {
+    color: var(--thread-mn-deep);
+}
+
+.course-outcome-card--engagement {
+    border-top-color: var(--thread-engagement);
+}
+
+.course-outcome-card--engagement h3 {
+    color: var(--thread-engagement);
+}
+
+@media (max-width: 768px) {
+    .course-outcome-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   Course Mechanics (How It Works steps)
+   ============================================ */
+.course-mechanic-list {
+    margin: var(--space-site-md) 0 0;
+}
+
+.course-mechanic {
+    padding: var(--space-site-md) 0;
+    border-bottom: 1px solid var(--surface-divider-light);
+}
+
+.course-mechanic:first-child {
+    padding-top: 0;
+}
+
+.course-mechanic:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* On tinted panel backgrounds, the light divider disappears — use the stronger one */
+[class*="panel-"] .course-mechanic {
+    border-bottom-color: var(--surface-divider);
+}
+[class*="panel-"] .course-mechanic:last-child {
+    border-bottom: none;
+}
+
+.about-content .course-mechanic h3,
+.course-mechanic h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    margin: 0 0 var(--space-site-xs);
+    color: var(--text-primary);
+    line-height: var(--line-snug);
+}
+
+.about-content .course-mechanic p,
+.course-mechanic p {
+    font-size: var(--text-base);
+    color: var(--text-body);
+    line-height: var(--line-relaxed);
+    margin: 0;
+    max-width: var(--prose-max-width);
+}
+
+/* ============================================
+   Next-Step Navigation Cards
+   Compact course-navigation cards at bottom of
+   training pages. Each card is a single <a> block.
+   ============================================ */
+.next-step-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--grid-gap);
+    margin: var(--space-site-md) 0;
+}
+
+@media (max-width: 768px) {
+    .next-step-nav {
+        grid-template-columns: 1fr;
+    }
+}
+
+.about-content:has(.next-step-nav) {
+    max-width: none;
+}
+
+.next-step-card {
+    display: block;
+    background: var(--surface-card);
+    border: var(--border-thin) solid var(--surface-card-border);
+    border-top: var(--border-subtle) solid var(--surface-divider);
+    border-radius: var(--site-radius);
+    padding: var(--card-padding) var(--card-padding-lg);
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.next-step-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: var(--hover-lift-sm);
+}
+
+.next-step-card:focus-visible {
+    outline: 2px solid var(--site-accent);
+    outline-offset: 2px;
+}
+
+.next-step-nav .next-step-card__title {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    line-height: var(--line-snug);
+    margin: 0 0 0.4rem;
+}
+
+.next-step-nav .next-step-card__desc {
+    font-size: var(--text-base);
+    color: var(--text-body);
+    line-height: var(--line-normal);
+    margin: 0;
+}
+
+/* Thread-colored top borders and title colors */
+.next-step-card--hnr { border-top-color: var(--thread-hnr); }
+.next-step-card--hnr .next-step-card__title { color: var(--thread-hnr); }
+
+.next-step-card--mn { border-top-color: var(--thread-mn-deep); }
+.next-step-card--mn .next-step-card__title { color: var(--thread-mn-deep); }
+
+.next-step-card--engagement { border-top-color: var(--thread-engagement); }
+.next-step-card--engagement .next-step-card__title { color: var(--thread-engagement); }
+
+.next-step-card--renergence { border-top-color: var(--thread-renergence); }
+.next-step-card--renergence .next-step-card__title { color: var(--thread-renergence); }
+
+/* Legacy: thread-colored borders on .pricing-card (training overview page) */
+.pricing-card.next-step-card--hnr { border-top: 3px solid var(--thread-hnr); border-left-color: var(--thread-hnr); }
+.pricing-card.next-step-card--mn { border-top: 3px solid var(--thread-mn); border-left-color: var(--thread-mn); }
+.pricing-card.next-step-card--engagement { border-top: 3px solid var(--thread-engagement); border-left-color: var(--thread-engagement); }
+.pricing-card.next-step-card--renergence { border-top: 3px solid var(--thread-renergence); border-left-color: var(--thread-renergence); }
 
 /* ============================================
    Training Overview: Course Listing Cards
@@ -3474,6 +3726,21 @@ body {
     color: var(--text-primary);
     margin-bottom: var(--space-site-md);
     line-height: var(--line-relaxed);
+}
+
+.about-content a {
+    color: var(--site-accent);
+    text-underline-offset: 2px;
+}
+
+.about-content a:hover {
+    color: var(--site-accent-hover);
+}
+
+.about-content a:focus-visible {
+    outline: 2px solid var(--site-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
 }
 
 .about-content ul,
