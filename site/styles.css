@@ -2364,9 +2364,82 @@ body {
 /* ============================================
    Focus Track Cards — stacked full-width
    ============================================ */
+.focus-track-card {
+    display: flex;
+    background: var(--surface-card);
+    border-radius: var(--radius-md, 6px);
+    border: 1px solid var(--border-light, #e2dfe0);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: var(--space-site-md);
+    overflow: hidden;
+}
+
+.focus-track-card:last-child {
+    margin-bottom: 0;
+}
+
+.focus-track-card__accent {
+    width: 8px;
+    flex-shrink: 0;
+}
+
+.focus-track-card--renergence .focus-track-card__accent { background: var(--thread-renergence); }
+.focus-track-card--hnr .focus-track-card__accent { background: var(--thread-hnr); }
+.focus-track-card--mn .focus-track-card__accent { background: var(--thread-mn); }
+.focus-track-card--engagement .focus-track-card__accent { background: var(--thread-engagement); }
+
+.focus-track-card .focus-track-card__body {
+    padding: var(--space-site-md) var(--space-site-lg) var(--space-site-md);
+    flex: 1;
+}
+
+.focus-track-card .focus-track-card__body h3 {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    margin: 0 0 var(--space-site-xs);
+    line-height: 1.25;
+}
+
+.focus-track-card .focus-track-card__body h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.focus-track-card .focus-track-card__body h3 a:hover {
+    text-decoration: underline;
+}
+
+.focus-track-card .focus-track-card__body p {
+    margin-bottom: var(--space-site-sm);
+    line-height: 1.65;
+    font-size: var(--text-base);
+}
+
+.focus-track-card .focus-track-card__body .focus-track-card__outcome {
+    margin-bottom: var(--space-site-sm);
+}
+
+.focus-track-card .focus-track-card__body .focus-track-card__question {
+    font-style: italic;
+    color: var(--text-primary);
+    margin-bottom: var(--space-site-xs);
+}
+
+.focus-track-card .focus-track-card__body .focus-track-card__meta {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    margin-bottom: 0;
+}
+
+.focus-track-card .focus-track-card__body .course-listing-link {
+    margin-top: var(--space-site-xs);
+    margin-bottom: 0;
+}
+
+/* Focus Tracks intro — tighter gap to first card */
 .focus-tracks-intro {
     margin-top: var(--space-site-xl);
-    margin-bottom: var(--space-site-lg);
+    margin-bottom: var(--space-site-sm);
 }
 
 .focus-tracks-intro h2 {
@@ -2376,75 +2449,6 @@ body {
 .focus-tracks-intro p {
     color: var(--text-secondary);
     max-width: 40em;
-}
-
-.focus-track-card {
-    display: flex;
-    background: var(--surface-card);
-    border-radius: var(--radius-md, 6px);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-    margin-bottom: var(--space-site-lg);
-    overflow: hidden;
-}
-
-.focus-track-card:last-child {
-    margin-bottom: 0;
-}
-
-.focus-track-card__accent {
-    width: 6px;
-    flex-shrink: 0;
-}
-
-.focus-track-card--renergence .focus-track-card__accent { background: var(--thread-renergence); }
-.focus-track-card--hnr .focus-track-card__accent { background: var(--thread-hnr); }
-.focus-track-card--mn .focus-track-card__accent { background: var(--thread-mn); }
-.focus-track-card--engagement .focus-track-card__accent { background: var(--thread-engagement); }
-
-.focus-track-card__body {
-    padding: var(--space-site-sm) var(--space-site-lg) var(--space-site-md);
-    flex: 1;
-}
-
-.focus-track-card .focus-track-card__body h3 {
-    font-size: var(--text-3xl);
-    margin: 0 0 var(--space-site-xs);
-    margin-top: 0;
-    line-height: 1.2;
-}
-
-.focus-track-card__body h3 a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.focus-track-card__body h3 a:hover {
-    text-decoration: underline;
-}
-
-.focus-track-card__body > p {
-    margin-bottom: var(--space-site-sm);
-    line-height: 1.65;
-}
-
-.focus-track-card__outcome {
-    margin-bottom: var(--space-site-sm);
-}
-
-.focus-track-card__question {
-    font-style: italic;
-    color: var(--text-primary);
-    margin-bottom: var(--space-site-xs);
-}
-
-.focus-track-card__meta {
-    font-size: var(--text-xs);
-    color: var(--text-secondary);
-    margin-bottom: var(--space-site-xs);
-}
-
-.focus-track-card .course-listing-link {
-    margin-top: var(--space-site-xs);
 }
 
 /* MNTEST — separated from focus tracks */
@@ -2465,11 +2469,11 @@ body {
 }
 
 @media (max-width: 768px) {
-    .focus-track-card__body {
+    .focus-track-card .focus-track-card__body {
         padding: var(--space-site-sm) var(--space-site-md) var(--space-site-md);
     }
 
-    .focus-track-card__body h3 {
+    .focus-track-card .focus-track-card__body h3 {
         font-size: var(--text-xl);
     }
 }
