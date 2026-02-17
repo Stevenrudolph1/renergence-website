@@ -2599,6 +2599,20 @@ body {
     color: var(--text-secondary);
 }
 
+/* Callout inside reversed (dark) panels — fix text contrast */
+[class*="panel-reversed"] .training-callout {
+    background: rgba(255, 255, 255, 0.1);
+    border-left-color: rgba(255, 255, 255, 0.4);
+}
+
+[class*="panel-reversed"] .training-callout .callout-headline {
+    color: #ffffff;
+}
+
+[class*="panel-reversed"] .training-callout .callout-note {
+    color: rgba(255, 255, 255, 0.7);
+}
+
 /* ============================================
    Shared: Action Link (accent arrow links)
    ============================================ */
