@@ -1146,9 +1146,23 @@ body {
 
 .thread-hnr-detail {
     background-color: var(--surface-panel-hnr);
+    position: relative;
+    overflow: hidden;
 }
 .thread-engagement-detail {
     background-color: var(--surface-panel-engagement);
+    position: relative;
+    overflow: hidden;
+}
+.thread-renergence-detail {
+    position: relative;
+    overflow: hidden;
+}
+.thread-hnr-detail > .container,
+.thread-engagement-detail > .container,
+.thread-renergence-detail > .container {
+    position: relative;
+    z-index: 1;
 }
 
 .thread-header {

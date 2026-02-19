@@ -58,7 +58,7 @@
   --mark-renergence: rgba(255, 255, 255, 0.35);      /* light navy tint           */
   --mark-hnr: rgba(255, 255, 255, 0.35);             /* light purple tint         */
   --mark-engagement: rgba(255, 255, 255, 0.4);       /* light pink tint        */
-  --mark-mn: rgba(139, 69, 19, 0.3);                 /* warm brown tint for orange bg          */
+  --mark-mn: rgba(255, 255, 255, 0.5);               /* white tint for orange bg               */
 
   /* ============================================
      TEXT COLORS — COVER
