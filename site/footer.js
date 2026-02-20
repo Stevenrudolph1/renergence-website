@@ -18,10 +18,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     </ul>
                 </div>
                 <div class="footer-col">
+                    <h4>Learn</h4>
+                    <ul>
+                        <li><a href="${pathPrefix}how-it-works.html">How It Works</a></li>
+                        <li><a href="${pathPrefix}frameworks.html">Frameworks</a></li>
+                        <li><a href="${pathPrefix}using-ai.html">Using AI</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
                     <h4>For Practitioners</h4>
                     <ul>
                         <li><a href="${pathPrefix}licensing.html">Licensing</a></li>
                         <li><a href="${pathPrefix}training.html">Training</a></li>
+                        <li><a href="${pathPrefix}using-ai-practitioners.html">AI in Practice</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -32,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <li><a href="${pathPrefix}terms.html">Terms of Service</a></li>
                         <li><a href="${pathPrefix}privacy.html">Privacy Policy</a></li>
                         <li><a href="${pathPrefix}accessibility.html">Accessibility</a></li>
-                        <li><a href="https://renergence.substack.com" target="_blank" rel="noopener">Substack</a></li>
+                        <li><a href="${pathPrefix}articles.html">Articles</a></li>
                         <li><a href="${pathPrefix}contact.html">Contact</a></li>
                     </ul>
                 </div>
