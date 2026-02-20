@@ -117,6 +117,10 @@
                 </p>
 
                 <form class="contact-form" id="contactForm" novalidate>
+                    <input type="hidden" name="access_key" value="5c1bf630-8ddb-429e-92c9-fd24cc896c8b">
+                    <input type="hidden" name="subject" value="New Contact Form Submission — Renergence">
+                    <input type="hidden" name="from_name" value="Renergence Contact Form">
+                    <input type="checkbox" name="botcheck" style="display:none">
                     <div>
                         <label for="contact-name">Name</label>
                         <input type="text" id="contact-name" name="name" autocomplete="name" required>
@@ -127,7 +131,7 @@
                     </div>
                     <div>
                         <label for="contact-subject">Subject</label>
-                        <input type="text" id="contact-subject" name="subject" required>
+                        <input type="text" id="contact-subject" name="subject_line" required>
                     </div>
                     <div>
                         <label for="contact-message">Message</label>
@@ -160,10 +164,6 @@
             const status = document.getElementById('contactStatus');
             const submitBtn = document.getElementById('contactSubmit');
 
-            // Function URL will be injected at deploy time via DO Functions endpoint
-            // Format: https://<app-slug>.ondigitalocean.app/api/contact
-            const FUNCTION_URL = '/api/contact';
-
             form.addEventListener('submit', async function (e) {
                 e.preventDefault();
                 status.style.display = 'none';
@@ -183,17 +183,17 @@
                 submitBtn.textContent = 'Sending…';
 
                 try {
-                    const res = await fetch(FUNCTION_URL, {
+                    const data = new FormData(form);
+                    const res = await fetch('https://api.web3forms.com/submit', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ name, email, subject, message }),
+                        body: data,
                     });
-                    const data = await res.json();
-                    if (res.ok && data.success) {
+                    const json = await res.json();
+                    if (json.success) {
                         showStatus('success', 'Your message has been sent. We\'ll be in touch.');
                         form.reset();
                     } else {
-                        showStatus('error', data.error || 'Something went wrong. Please try again.');
+                        showStatus('error', json.message || 'Something went wrong. Please try again.');
                     }
                 } catch {
                     showStatus('error', 'Could not send your message. Please try again or email us directly.');
