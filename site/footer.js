@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <ul>
                         <li><a href="${pathPrefix}how-it-works.html">How It Works</a></li>
                         <li><a href="${pathPrefix}frameworks.html">Frameworks</a></li>
+                        <li><a href="${pathPrefix}tools.html">Tools</a></li>
                         <li><a href="${pathPrefix}using-ai.html">Using AI</a></li>
                     </ul>
                 </div>

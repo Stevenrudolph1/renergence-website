@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Toolkit — Renergence</title>
+    <meta name="description" content="Instruction files that shape how AI interprets the Renergence frameworks. For Claude, ChatGPT, and any AI tool.">
+    <link rel="canonical" href="https://renergence.com/ai-toolkit.html">
+    <meta property="og:title" content="AI Toolkit — Renergence">
+    <meta property="og:description" content="Instruction files that shape how AI interprets the Renergence frameworks.">
+    <meta property="og:url" content="https://renergence.com/ai-toolkit.html">
+    <meta property="og:image" content="https://renergence.com/images/og-default.jpg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Toolkit — Renergence">
+    <meta name="twitter:description" content="Instruction files that shape how AI interprets the Renergence frameworks.">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="sr-design-system/sr-design-tokens.css">
+    <link rel="stylesheet" href="styles.css?v=20260216e">
+    <script src="header.js"></script>
+</head>
+<body>
+    <!-- Page Header -->
+    <section class="page-header">
+        <svg class="page-header__mark" viewBox="0 0 50 50" aria-hidden="true">
+            <path d="M14 25 A11 11 0 0 1 36 25" fill="none" stroke="rgba(255,255,255,1)" stroke-width="1.8" />
+            <path d="M36 25 A11 11 0 0 1 14 25" fill="none" stroke="rgba(255,255,255,1)" stroke-width="1.8" />
+            <polygon points="12,21 16,25 17,20" fill="rgba(255,255,255,1)" />
+            <polygon points="38,29 34,25 33,30" fill="rgba(255,255,255,1)" />
+        </svg>
+        <div class="container">
+            <h1>AI Toolkit</h1>
+        </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <p>
+                    When you use AI with the Renergence books, the AI doesn't know how to interpret the frameworks. It defaults to generic advice. These toolkit files fix that.
+                </p>
+                <p>
+                    The toolkit governs how AI behaves. The books provide what it works with. You need both.
+                </p>
+                <p>
+                    <a href="ai-policy.html">Read the AI policy &rarr;</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What It Does -->
+    <section class="about-section panel-renergence">
+        <div class="container">
+            <div class="about-content">
+                <h2>What It Does</h2>
+                <p>
+                    Drop the toolkit file into your AI project alongside the books. The AI will:
+                </p>
+                <ul>
+                    <li>Identify patterns by name from the books</li>
+                    <li>Ask which domain applies before responding</li>
+                    <li>Hold competing explanations instead of collapsing to one</li>
+                    <li>Ground everything in the actual book content</li>
+                    <li>Distinguish diagnosis from advice</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Setup -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <h2>Setup</h2>
+
+                <h3>Claude (Anthropic)</h3>
+                <ol>
+                    <li>Create a new Project</li>
+                    <li>Upload the toolkit file to the project knowledge</li>
+                    <li>Upload the book files (.md) to the same project</li>
+                    <li>Start a conversation&mdash;the toolkit applies automatically</li>
+                </ol>
+                <p>Works on the free plan. Pro ($20/mo) gives unlimited file uploads and access to stronger models.</p>
+
+                <h3>ChatGPT (OpenAI)</h3>
+                <ol>
+                    <li>Start a new conversation</li>
+                    <li>Upload the toolkit file and a book file</li>
+                    <li>The AI will use the toolkit for that conversation</li>
+                </ol>
+                <p>Works on the free plan. For persistent use across conversations, create a Custom GPT (requires Plus at $20/mo) and add the files there.</p>
+
+                <h3>Other AI Tools</h3>
+                <ol>
+                    <li>Open your AI tool (Gemini, Cursor, or similar)</li>
+                    <li>Upload or paste the toolkit file as project instructions</li>
+                    <li>Upload the relevant book file</li>
+                </ol>
+                <p>Any tool that accepts file uploads or system prompts will work.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Paste -->
+    <section class="about-section panel-mn">
+        <div class="container">
+            <div class="about-content">
+                <h2>Quick Paste Version</h2>
+                <p>
+                    If you don't want to download files, copy the text below and paste it into your AI tool's project instructions or system prompt. Then upload the book (PDF, ePub, or .md) in the conversation.
+                </p>
+                <pre id="quick-paste" style="background: rgba(0,0,0,0.06); padding: 1.25rem; border-radius: 6px; font-size: 0.85em; line-height: 1.6; white-space: pre-wrap; word-wrap: break-word; position: relative; cursor: text;">You are working with the Renergence diagnostic frameworks by Steven Rudolph. The user has uploaded one or more of these books:
+
+- Renergence — the signal (when what you're in costs more than it returns)
+- Heroes Not Required — Structure (how load, decisions, and boundaries are arranged)
+- Why You Thrive Here and Not There — Alignment (whether the situation fits how you naturally engage)
+- What You Stopped Noticing — Positioning (where you attend from inside a situation)
+
+Follow these rules:
+
+1. Before responding to any situation, identify which domain (Structure, Alignment, or Positioning) is primary. If unclear, present the competing possibilities and ask for more detail.
+2. Use pattern names from the books. Do not paraphrase into generic language.
+3. Your role is diagnostic, not prescriptive. Help identify what is operating — do not tell the user what to do about their life.
+4. When referencing patterns, moves, or verification criteria, ground them in the loaded book content. Do not generate framework language that isn't in the material.
+5. When multiple domains seem relevant, hold them as competing explanations. Do not collapse to one prematurely.
+6. After identifying a pattern, reference the book's verification criteria.
+7. Do not treat all problems as personal. Many situations are structural — the arrangement is the problem, not the person.
+8. Do not skip to solutions. The sequence is: signal → diagnosis → move → verification.
+9. If no book is loaded, tell the user to upload it. The frameworks use precise, named patterns you cannot reliably reference from memory. Free books available at renergence.com.
+
+© 2026 Multiple Natures International. Personal use encouraged. Commercial AI use requires licensing. See renergence.com/ai-policy.html</pre>
+                <p style="margin-top: 1rem;">
+                    <button onclick="navigator.clipboard.writeText(document.getElementById('quick-paste').textContent).then(function(){var b=event.target;b.textContent='Copied';setTimeout(function(){b.textContent='Copy to clipboard'},2000)})" style="background: var(--color-text-primary, #1e1a28); color: white; border: none; padding: 0.5rem 1.25rem; border-radius: 4px; cursor: pointer; font-size: 0.9em;">Copy to clipboard</button>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Downloads -->
+    <section class="about-section panel-hnr">
+        <div class="container">
+            <div class="about-content">
+                <h2>Downloads</h2>
+
+                <div style="margin-bottom: 2rem; padding: 1.25rem; border: 1px solid rgba(0,0,0,0.15); border-radius: 6px; background: rgba(255,255,255,0.5);">
+                    <label style="display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer; font-size: 0.95em;">
+                        <input type="checkbox" id="policy-agree" style="margin-top: 0.25rem; width: 18px; height: 18px; flex-shrink: 0;">
+                        <span>I have read the <a href="ai-policy.html" target="_blank">AI Policy</a> and <a href="terms.html" target="_blank">Terms of Service</a> and agree to use these materials accordingly.</span>
+                    </label>
+                </div>
+
+                <div id="downloads-area" style="opacity: 0.4; pointer-events: none;">
+                    <h3>Reader Edition</h3>
+                    <p>For personal use with the books.</p>
+                    <p>
+                        <a href="tools/renergence-ai-toolkit-reader-v1.0.zip" download style="font-weight: 600;">Download Reader Toolkit v1.0</a> <span style="opacity: 0.7;">(zip)</span>
+                    </p>
+
+                    <h3 style="margin-top: 2rem;">Practitioner Edition</h3>
+                    <p>For professional use with clients. Adds constraints for client work: hypothesis-only framing, no severity calibration, no intervention prescription.</p>
+                    <p>
+                        <a href="tools/renergence-ai-toolkit-practitioner-v1.0.zip" download style="font-weight: 600;">Download Practitioner Toolkit v1.0</a> <span style="opacity: 0.7;">(zip)</span>
+                    </p>
+
+                    <p style="margin-top: 1.5rem; opacity: 0.7; font-size: 0.9em;">Both packages include setup instructions, quick-paste instructions, all four free books in .md format, and the toolkit file.</p>
+                </div>
+
+                <script>
+                    document.getElementById('policy-agree').addEventListener('change', function() {
+                        var area = document.getElementById('downloads-area');
+                        if (this.checked) {
+                            area.style.opacity = '1';
+                            area.style.pointerEvents = 'auto';
+                        } else {
+                            area.style.opacity = '0.4';
+                            area.style.pointerEvents = 'none';
+                        }
+                    });
+                </script>
+
+                <p style="margin-top: 1.5rem; opacity: 0.8; font-size: 0.9em;">
+                    Current version: 1.0 &middot; Updated February 2026 &middot; <a href="using-ai.html">How to use AI with the material &rarr;</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What This Doesn't Replace -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <h2>One More Thing</h2>
+                <p>
+                    The toolkit makes AI smarter about the material. It doesn't make it a substitute for the material. The books do something AI can't&mdash;they create recognition through pacing, sequence, and the way they hold ambiguity before resolving it. That experience matters. Read them.
+                </p>
+                <p>
+                    If you work with clients: this toolkit helps with preparation and reflection, but the real diagnostic work&mdash;the instruments, the routing, the calibration&mdash;that comes from <a href="training.html">practitioner training</a>. AI is a good thinking partner. It's not a practitioner.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <p>
+                    <a href="tools.html">&larr; Back to Tools</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script src="footer.js"></script>
+    <script src="navigator-config.js"></script>
+    <script src="navigator-widget.js"></script>
+</body>
+</html>
