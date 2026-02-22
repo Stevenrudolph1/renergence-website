@@ -1149,6 +1149,7 @@ body {
    ============================================ */
 .thread-detail {
     padding: 0;
+    scroll-margin-top: 70px;
 }
 .thread-detail > .container {
     padding-top: var(--space-site-md);
