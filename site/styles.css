@@ -3203,6 +3203,50 @@ body {
     letter-spacing: var(--tracking-caps);
 }
 
+/* Homepage next-step boxes (below free books) */
+.homepage-next-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-site-md);
+    margin-top: var(--space-site-lg);
+    padding-top: var(--space-site-md);
+    border-top: 1px solid var(--border-light);
+}
+
+.homepage-next-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: var(--space-site-md) var(--space-site-lg);
+    background-color: var(--surface-card);
+    border: var(--border-thin) solid var(--surface-card-border);
+    border-radius: var(--site-radius);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.homepage-next-box:hover {
+    border-color: var(--site-accent);
+    transform: var(--hover-lift-sm);
+    box-shadow: var(--shadow-sm);
+}
+
+.homepage-next-box strong {
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+}
+
+.homepage-next-box span {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+@media (max-width: 600px) {
+    .homepage-next-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ============================================
    Frameworks Page
    ============================================ */
@@ -5430,7 +5474,7 @@ select:focus-visible,
    ============================================ */
 .pathway-section {
     padding: var(--section-padding-y) 0;
-    background-color: var(--surface-page);
+    background-color: var(--surface-panel-light);
 }
 .pathway-section h2 {
     font-family: var(--font-title);
@@ -5456,6 +5500,7 @@ select:focus-visible,
     text-decoration: none;
     color: inherit;
     display: block;
+    text-align: center;
 }
 .pathway-card:hover {
     box-shadow: var(--shadow-md);
