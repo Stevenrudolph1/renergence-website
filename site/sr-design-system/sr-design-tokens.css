@@ -105,6 +105,10 @@
   --surface-panel-hnr: #ede0eb;          /* purple wash     */
   --surface-panel-engagement: #f7e0ec;   /* pink wash       */
   --surface-panel-mn: #f7e8d8;           /* warm-orange wash */
+  --surface-card-renergence: #f1f1fb;    /* card on renergence panel */
+  --surface-card-hnr: #f6f0f5;           /* card on hnr panel       */
+  --surface-card-engagement: #fbf0f6;    /* card on engagement panel */
+  --surface-card-mn: #fbf4ec;            /* card on mn panel         */
 
   /* ============================================
      GRADIENTS (GOV-07 governed)

@@ -1274,11 +1274,10 @@ body {
     border: var(--border-thin) solid var(--surface-card-border);
 }
 
-.thread-hnr-detail .thread-layer,
-.thread-engagement-detail .thread-layer,
-.thread-mn-detail .thread-layer {
-    background-color: white;
-}
+.thread-renergence-detail .thread-layer { background-color: var(--surface-card-renergence); }
+.thread-hnr-detail .thread-layer { background-color: var(--surface-card-hnr); }
+.thread-engagement-detail .thread-layer { background-color: var(--surface-card-engagement); }
+.thread-mn-detail .thread-layer { background-color: var(--surface-card-mn); }
 
 .layer-badge {
     display: inline-block;
