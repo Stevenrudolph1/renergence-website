@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap">
+<title>Renergence for Coaches — Cover v2</title>
+<style>
+  body { margin: 0; padding: 40px; background: #f7f4f6; display: flex; justify-content: center; align-items: flex-start; }
+
+  .cover {
+    width: 375px;
+    height: 562px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    position: relative;
+  }
+
+  .image-zone {
+    flex: 0 0 60%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .text-zone {
+    flex: 1 1 auto;
+    background: #0D1164;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px 28px 22px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bookmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 22px;
+    height: 110px;
+    background: #4A6FFF;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid rgba(255,255,255,0.12);
+    border-left: 1px solid rgba(255,255,255,0.06);
+  }
+  .bookmark-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 8.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    transform: rotate(180deg);
+  }
+
+  .watermark {
+    position: absolute;
+    right: -20px;
+    bottom: -40px;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+  .watermark svg { width: 180px; height: 180px; }
+
+  .title-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cover-title {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 16px;
+  }
+
+  .cover-subtitle {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    font-style: normal;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .cover-author {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 400;
+    font-size: 8.5px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="bookmark"><span class="bookmark-label">Renergence</span></div>
+  <div class="image-zone" style="background-image: url('/Users/stevenrudolph/Projects/books/05-cross-cutting/renergence-for-coaches/EN/Covers/renergence-for-coaches-cover-image.png');"></div>
+  <div class="text-zone">
+    <div class="watermark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+        <line x1="10" y1="12" x2="25" y2="25" stroke="#ffffff" stroke-width="2.0" fill="none"/>
+        <line x1="10" y1="25" x2="25" y2="25" stroke="#ffffff" stroke-width="2.0" fill="none"/>
+        <line x1="10" y1="38" x2="25" y2="25" stroke="#ffffff" stroke-width="2.0" fill="none"/>
+        <circle cx="25" cy="25" r="2" fill="#ffffff" opacity="0.65"/>
+        <path d="M32 14 A14 14 0 0 1 32 36" stroke="#ffffff" stroke-width="1.4" fill="none"/>
+        <polygon points="33,13 31,17 35,16" fill="#ffffff" opacity="0.65"/>
+      </svg>
+    </div>
+    <div class="title-group">
+      <div class="cover-title">Renergence<br>for Coaches</div>
+      <div class="cover-subtitle">What You Can't See from Where You're Standing</div>
+    </div>
+    <div class="cover-author">Steven Rudolph</div>
+  </div>
+</div>
+</body>
+</html>
